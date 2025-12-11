@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="controller.CityTravelController"
+      spacing="15" alignment="CENTER" prefWidth="600" prefHeight="500">
+
+    <padding>
+        <Insets top="30" right="40" bottom="30" left="40"/>
+    </padding>
+
+    <Label text="City Travel Booking" style="-fx-font-size: 24; -fx-font-weight: bold;"/>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="City Name:" prefWidth="120"/>
+        <TextField fx:id="cityNameField" prefWidth="250"/>
+    </HBox>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Time Interval:" prefWidth="120"/>
+        <ComboBox fx:id="intervalCombo" prefWidth="250"/>
+    </HBox>
+
+    <Separator/>
+
+    <Label text="Passenger Information" style="-fx-font-size: 16; -fx-font-weight: bold;"/>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Name:" prefWidth="120"/>
+        <TextField fx:id="passengerNameField" prefWidth="250"/>
+    </HBox>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="FIN:" prefWidth="120"/>
+        <TextField fx:id="passengerFinField" prefWidth="250"/>
+    </HBox>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Age:" prefWidth="120"/>
+        <TextField fx:id="passengerAgeField" prefWidth="100"/>
+    </HBox>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Gender:" prefWidth="120"/>
+        <ComboBox fx:id="genderCombo" prefWidth="100"/>
+    </HBox>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Luggage (kg):" prefWidth="120"/>
+        <TextField fx:id="luggageField" prefWidth="100"/>
+    </HBox>
+
+    <CheckBox fx:id="useCityCardCheckbox" text="Use City Card (if available)"/>
+
+    <Separator/>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Price:" prefWidth="120" style="-fx-font-weight: bold;"/>
+        <Label fx:id="priceLabel" text="0.00 AZN" style="-fx-font-size: 16;"/>
+    </HBox>
+
+    <HBox spacing="20" alignment="CENTER">
+        <Button text="Book" prefWidth="120" onAction="#handleBooking"/>
+        <Button text="Cancel" prefWidth="120" onAction="#handleCancel"/>
+    </HBox>
+
+    <Label fx:id="messageLabel" style="-fx-text-fill: red;"/>
+</VBox>

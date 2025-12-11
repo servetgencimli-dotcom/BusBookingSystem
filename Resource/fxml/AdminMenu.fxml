@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.AdminMenuController"
+            prefHeight="800.0" prefWidth="1200.0"
+            style="-fx-background-color: #f0f2f5;">
+
+    <!-- Top Navigation Bar -->
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="20.0"
+              style="-fx-background-color: linear-gradient(to right, #667eea, #764ba2); -fx-padding: 20 30;">
+
+            <Label text="🎯" style="-fx-font-size: 28px;"/>
+
+            <VBox spacing="2">
+                <Label text="Admin Dashboard"
+                       style="-fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold;"/>
+                <Label text="Sistem İdarəetmə Paneli"
+                       style="-fx-text-fill: rgba(255,255,255,0.8); -fx-font-size: 13px;"/>
+            </VBox>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <Button fx:id="logoutButton"
+                    text="🚪 Çıxış"
+                    onAction="#handleLogout"
+                    style="-fx-background-color: rgba(255,255,255,0.2);
+                           -fx-text-fill: white;
+                           -fx-font-size: 14px;
+                           -fx-font-weight: bold;
+                           -fx-background-radius: 20;
+                           -fx-padding: 10 25;
+                           -fx-cursor: hand;
+                           -fx-border-color: rgba(255,255,255,0.3);
+                           -fx-border-radius: 20;
+                           -fx-border-width: 2;">
+            </Button>
+        </HBox>
+    </top>
+
+    <center>
+        <ScrollPane fitToWidth="true" fitToHeight="true"
+                    style="-fx-background-color: transparent; -fx-background: transparent;">
+            <VBox spacing="30.0">
+                <padding>
+                    <Insets top="40.0" right="40.0" bottom="40.0" left="40.0"/>
+                </padding>
+
+                <!-- Welcome Section -->
+                <VBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="Xoş gəlmisiniz, Admin! 👋"
+                           style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #2d3748;"/>
+                    <Label text="Sistem idarəetmə panelindən istifadə edərək bütün əməliyyatları idarə edin"
+                           style="-fx-font-size: 14px; -fx-text-fill: #718096;"/>
+                </VBox>
+
+                <!-- Stats Cards Row -->
+                <HBox spacing="20.0" alignment="CENTER">
+
+                    <!-- Stat Card 1 -->
+                    <VBox alignment="CENTER" spacing="10"
+                          style="-fx-background-color: white;
+                                 -fx-background-radius: 15;
+                                 -fx-padding: 25;
+                                 -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 15, 0, 0, 5);"
+                          HBox.hgrow="ALWAYS">
+                        <Label text="🌍" style="-fx-font-size: 32px;"/>
+                        <Label text="Marşrutlar"
+                               style="-fx-font-size: 16px; -fx-text-fill: #718096; -fx-font-weight: 600;"/>
+                        <Label text="3 Növ"
+                               style="-fx-font-size: 24px; -fx-text-fill: #2d3748; -fx-font-weight: bold;"/>
+                    </VBox>
+
+                    <!-- Stat Card 2 -->
+                    <VBox alignment="CENTER" spacing="10"
+                          style="-fx-background-color: white;
+                                 -fx-background-radius: 15;
+                                 -fx-padding: 25;
+                                 -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 15, 0, 0, 5);"
+                          HBox.hgrow="ALWAYS">
+                        <Label text="📋" style="-fx-font-size: 32px;"/>
+                        <Label text="Rezervasiyalar"
+                               style="-fx-font-size: 16px; -fx-text-fill: #718096; -fx-font-weight: 600;"/>
+                        <Label text="Aktiv"
+                               style="-fx-font-size: 24px; -fx-text-fill: #2d3748; -fx-font-weight: bold;"/>
+                    </VBox>
+
+                    <!-- Stat Card 3 -->
+                    <VBox alignment="CENTER" spacing="10"
+                          style="-fx-background-color: white;
+                                 -fx-background-radius: 15;
+                                 -fx-padding: 25;
+                                 -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 15, 0, 0, 5);"
+                          HBox.hgrow="ALWAYS">
+                        <Label text="👥" style="-fx-font-size: 32px;"/>
+                        <Label text="İstifadəçilər"
+                               style="-fx-font-size: 16px; -fx-text-fill: #718096; -fx-font-weight: 600;"/>
+                        <Label text="Sistemdə"
+                               style="-fx-font-size: 24px; -fx-text-fill: #2d3748; -fx-font-weight: bold;"/>
+                    </VBox>
+                </HBox>
+
+                <!-- Main Action Cards -->
+                <VBox spacing="15">
+                    <Label text="İdarəetmə Əməliyyatları"
+                           style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2d3748;"/>
+
+                    <!-- Routes Management Section -->
+                    <HBox spacing="15">
+
+                        <!-- Global Routes Card -->
+                        <VBox alignment="TOP_LEFT" spacing="15"
+                              style="-fx-background-color: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                                     -fx-background-radius: 15;
+                                     -fx-padding: 25;
+                                     -fx-effect: dropshadow(gaussian, rgba(102,126,234,0.4), 20, 0, 0, 8);"
+                              HBox.hgrow="ALWAYS">
+                            <Label text="🌍" style="-fx-font-size: 36px;"/>
+                            <VBox spacing="5">
+                                <Label text="Beynəlxalq Marşrutlar"
+                                       style="-fx-text-fill: white; -fx-font-size: 18px; -fx-font-weight: bold;"/>
+                                <Label text="Xarici ölkələr üçün marşrutlar"
+                                       wrapText="true"
+                                       style="-fx-text-fill: rgba(255,255,255,0.9); -fx-font-size: 13px;"/>
+                            </VBox>
+                            <Region VBox.vgrow="ALWAYS"/>
+                            <Button fx:id="globalRoutesButton"
+                                    text="İdarə Et →"
+                                    onAction="#handleGlobalRoutes"
+                                    maxWidth="Infinity"
+                                    style="-fx-background-color: white;
+                                           -fx-text-fill: #667eea;
+                                           -fx-font-size: 14px;
+                                           -fx-font-weight: bold;
+                                           -fx-background-radius: 10;
+                                           -fx-padding: 12;
+                                           -fx-cursor: hand;">
+                            </Button>
+                        </VBox>
+
+                        <!-- Domestic Routes Card -->
+                        <VBox alignment="TOP_LEFT" spacing="15"
+                              style="-fx-background-color: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+                                     -fx-background-radius: 15;
+                                     -fx-padding: 25;
+                                     -fx-effect: dropshadow(gaussian, rgba(245,87,108,0.4), 20, 0, 0, 8);"
+                              HBox.hgrow="ALWAYS">
+                            <Label text="🏠" style="-fx-font-size: 36px;"/>
+                            <VBox spacing="5">
+                                <Label text="Daxili Marşrutlar"
+                                       style="-fx-text-fill: white; -fx-font-size: 18px; -fx-font-weight: bold;"/>
+                                <Label text="Şəhərlərarası marşrutlar"
+                                       wrapText="true"
+                                       style="-fx-text-fill: rgba(255,255,255,0.9); -fx-font-size: 13px;"/>
+                            </VBox>
+                            <Region VBox.vgrow="ALWAYS"/>
+                            <Button fx:id="domesticRoutesButton"
+                                    text="İdarə Et →"
+                                    onAction="#handleDomesticRoutes"
+                                    maxWidth="Infinity"
+                                    style="-fx-background-color: white;
+                                           -fx-text-fill: #f5576c;
+                                           -fx-font-size: 14px;
+                                           -fx-font-weight: bold;
+                                           -fx-background-radius: 10;
+                                           -fx-padding: 12;
+                                           -fx-cursor: hand;">
+                            </Button>
+                        </VBox>
+
+                        <!-- City Routes Card -->
+                        <VBox alignment="TOP_LEFT" spacing="15"
+                              style="-fx-background-color: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+                                     -fx-background-radius: 15;
+                                     -fx-padding: 25;
+                                     -fx-effect: dropshadow(gaussian, rgba(79,172,254,0.4), 20, 0, 0, 8);"
+                              HBox.hgrow="ALWAYS">
+                            <Label text="🏙️" style="-fx-font-size: 36px;"/>
+                            <VBox spacing="5">
+                                <Label text="Şəhər Marşrutları"
+                                       style="-fx-text-fill: white; -fx-font-size: 18px; -fx-font-weight: bold;"/>
+                                <Label text="Şəhərdaxili nəqliyyat"
+                                       wrapText="true"
+                                       style="-fx-text-fill: rgba(255,255,255,0.9); -fx-font-size: 13px;"/>
+                            </VBox>
+                            <Region VBox.vgrow="ALWAYS"/>
+                            <Button fx:id="cityRoutesButton"
+                                    text="İdarə Et →"
+                                    onAction="#handleCityRoutes"
+                                    maxWidth="Infinity"
+                                    style="-fx-background-color: white;
+                                           -fx-text-fill: #4facfe;
+                                           -fx-font-size: 14px;
+                                           -fx-font-weight: bold;
+                                           -fx-background-radius: 10;
+                                           -fx-padding: 12;
+                                           -fx-cursor: hand;">
+                            </Button>
+                        </VBox>
+                    </HBox>
+
+                    <!-- System Management Section -->
+                    <HBox spacing="15">
+
+                        <!-- All Bookings Card -->
+                        <VBox alignment="TOP_LEFT" spacing="15"
+                              style="-fx-background-color: white;
+                                     -fx-background-radius: 15;
+                                     -fx-padding: 25;
+                                     -fx-border-color: #e2e8f0;
+                                     -fx-border-radius: 15;
+                                     -fx-border-width: 2;
+                                     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 15, 0, 0, 5);"
+                              HBox.hgrow="ALWAYS">
+                            <Label text="📋" style="-fx-font-size: 36px;"/>
+                            <VBox spacing="5">
+                                <Label text="Rezervasiyalar"
+                                       style="-fx-text-fill: #2d3748; -fx-font-size: 18px; -fx-font-weight: bold;"/>
+                                <Label text="Bütün rezervasiyaları göstər"
+                                       wrapText="true"
+                                       style="-fx-text-fill: #718096; -fx-font-size: 13px;"/>
+                            </VBox>
+                            <Region VBox.vgrow="ALWAYS"/>
+                            <Button fx:id="allBookingsButton"
+                                    text="Göstər →"
+                                    onAction="#handleAllBookings"
+                                    maxWidth="Infinity"
+                                    style="-fx-background-color: #667eea;
+                                           -fx-text-fill: white;
+                                           -fx-font-size: 14px;
+                                           -fx-font-weight: bold;
+                                           -fx-background-radius: 10;
+                                           -fx-padding: 12;
+                                           -fx-cursor: hand;">
+                            </Button>
+                        </VBox>
+
+                        <!-- View Users Card -->
+                        <VBox alignment="TOP_LEFT" spacing="15"
+                              style="-fx-background-color: white;
+                                     -fx-background-radius: 15;
+                                     -fx-padding: 25;
+                                     -fx-border-color: #e2e8f0;
+                                     -fx-border-radius: 15;
+                                     -fx-border-width: 2;
+                                     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 15, 0, 0, 5);"
+                              HBox.hgrow="ALWAYS">
+                            <Label text="👥" style="-fx-font-size: 36px;"/>
+                            <VBox spacing="5">
+                                <Label text="İstifadəçilər"
+                                       style="-fx-text-fill: #2d3748; -fx-font-size: 18px; -fx-font-weight: bold;"/>
+                                <Label text="Sistemdəki istifadəçiləri göstər"
+                                       wrapText="true"
+                                       style="-fx-text-fill: #718096; -fx-font-size: 13px;"/>
+                            </VBox>
+                            <Region VBox.vgrow="ALWAYS"/>
+                            <Button fx:id="viewUsersButton"
+                                    text="Göstər →"
+                                    onAction="#handleViewUsers"
+                                    maxWidth="Infinity"
+                                    style="-fx-background-color: #667eea;
+                                           -fx-text-fill: white;
+                                           -fx-font-size: 14px;
+                                           -fx-font-weight: bold;
+                                           -fx-background-radius: 10;
+                                           -fx-padding: 12;
+                                           -fx-cursor: hand;">
+                            </Button>
+                        </VBox>
+                    </HBox>
+                </VBox>
+
+                <!-- Footer Info -->
+                <HBox alignment="CENTER" spacing="10"
+                      style="-fx-padding: 20 0 0 0;">
+                    <Label text="🔒 Təhlükəsiz Admin Paneli"
+                           style="-fx-font-size: 12px; -fx-text-fill: #a0aec0;"/>
+                    <Label text="•"
+                           style="-fx-font-size: 12px; -fx-text-fill: #a0aec0;"/>
+                    <Label text="Sistem Versiyası 1.0"
+                           style="-fx-font-size: 12px; -fx-text-fill: #a0aec0;"/>
+                </HBox>
+
+            </VBox>
+        </ScrollPane>
+    </center>
+
+</BorderPane>

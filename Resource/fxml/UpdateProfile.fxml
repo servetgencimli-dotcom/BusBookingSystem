@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="controller.UpdateProfileController"
+      spacing="15" alignment="CENTER" prefWidth="500" prefHeight="550">
+
+    <padding>
+        <Insets top="30" right="40" bottom="30" left="40"/>
+    </padding>
+
+    <Label text="Update Profile" style="-fx-font-size: 24; -fx-font-weight: bold;"/>
+
+    <Separator/>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Name:" prefWidth="120"/>
+        <TextField fx:id="nameField" prefWidth="250"/>
+    </HBox>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Gender:" prefWidth="120"/>
+        <ComboBox fx:id="genderCombo" prefWidth="100"/>
+    </HBox>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="New Password:" prefWidth="120"/>
+        <PasswordField fx:id="passwordField" prefWidth="250"/>
+    </HBox>
+
+    <Separator/>
+
+    <Label text="Card Information" style="-fx-font-weight: bold;"/>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Card Number:" prefWidth="120"/>
+        <TextField fx:id="cardField" prefWidth="250" promptText="16 digits"/>
+    </HBox>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Expiry Date:" prefWidth="120"/>
+        <TextField fx:id="expiryField" prefWidth="100" promptText="MM/YY"/>
+    </HBox>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="CVC:" prefWidth="120"/>
+        <TextField fx:id="cvcField" prefWidth="100" promptText="3 digits"/>
+    </HBox>
+
+    <Separator/>
+
+    <CheckBox fx:id="updateNameCheck" text="Update Name"/>
+    <CheckBox fx:id="updateGenderCheck" text="Update Gender"/>
+    <CheckBox fx:id="updatePasswordCheck" text="Update Password"/>
+    <CheckBox fx:id="updateCardCheck" text="Update Card Information"/>
+
+    <HBox spacing="20" alignment="CENTER">
+        <Button text="Save Changes" prefWidth="150" onAction="#handleSave" style="-fx-background-color: #4CAF50; -fx-text-fill: white;"/>
+        <Button text="Cancel" prefWidth="120" onAction="#handleCancel"/>
+    </HBox>
+
+    <Label fx:id="messageLabel" style="-fx-text-fill: green;"/>
+</VBox>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.ViewUsersController" prefWidth="800" prefHeight="600">
+
+    <top>
+        <VBox spacing="10">
+            <padding>
+                <Insets top="20" right="20" bottom="10" left="20"/>
+            </padding>
+            <Label text="Registered Users" style="-fx-font-size: 24; -fx-font-weight: bold;"/>
+            <Button text="Refresh" onAction="#loadUsers" prefWidth="100"/>
+        </VBox>
+    </top>
+
+    <center>
+        <TableView fx:id="usersTable">
+            <columns>
+                <TableColumn fx:id="nameColumn" text="Name" prefWidth="150"/>
+                <TableColumn fx:id="finColumn" text="FIN" prefWidth="120"/>
+                <TableColumn fx:id="ageColumn" text="Age" prefWidth="60"/>
+                <TableColumn fx:id="genderColumn" text="Gender" prefWidth="80"/>
+                <TableColumn fx:id="adminColumn" text="Admin" prefWidth="80"/>
+                <TableColumn fx:id="cardsColumn" text="City Cards" prefWidth="100"/>
+            </columns>
+        </TableView>
+    </center>
+
+    <bottom>
+        <HBox spacing="10" alignment="CENTER">
+            <padding>
+                <Insets top="10" right="20" bottom="20" left="20"/>
+            </padding>
+            <Button text="Back" onAction="#handleBack" prefWidth="100"/>
+        </HBox>
+    </bottom>
+</BorderPane>

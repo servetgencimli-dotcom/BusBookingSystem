@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="controller.BookingController"
+      spacing="15" alignment="TOP_CENTER" prefWidth="700" prefHeight="700">
+
+    <padding>
+        <Insets top="20" right="30" bottom="20" left="30"/>
+    </padding>
+
+    <Label text="Book Your Trip" style="-fx-font-size: 24; -fx-font-weight: bold;"/>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Travel Type:" prefWidth="120"/>
+        <ComboBox fx:id="travelTypeCombo" prefWidth="200"/>
+    </HBox>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Select Route:" prefWidth="120"/>
+        <ComboBox fx:id="routeCombo" prefWidth="300"/>
+    </HBox>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Travel Date:" prefWidth="120"/>
+        <DatePicker fx:id="datePicker" prefWidth="200"/>
+    </HBox>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Time Interval:" prefWidth="120"/>
+        <ComboBox fx:id="intervalCombo" prefWidth="200"/>
+    </HBox>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Number of Tickets:" prefWidth="120"/>
+        <Spinner fx:id="ticketSpinner" prefWidth="100" min="1" max="4" initialValue="1"/>
+    </HBox>
+
+    <Separator/>
+
+    <Label text="Passenger Information" style="-fx-font-size: 16; -fx-font-weight: bold;"/>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Name:" prefWidth="120"/>
+        <TextField fx:id="passengerNameField" prefWidth="250"/>
+    </HBox>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="FIN:" prefWidth="120"/>
+        <TextField fx:id="passengerFinField" prefWidth="250"/>
+    </HBox>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Age:" prefWidth="120"/>
+        <TextField fx:id="passengerAgeField" prefWidth="100"/>
+    </HBox>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Gender:" prefWidth="120"/>
+        <ComboBox fx:id="genderCombo" prefWidth="100"/>
+    </HBox>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Luggage (kg):" prefWidth="120"/>
+        <TextField fx:id="luggageField" prefWidth="100"/>
+    </HBox>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Floor:" prefWidth="120"/>
+        <ComboBox fx:id="floorCombo" prefWidth="100"/>
+    </HBox>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Select Seat:" prefWidth="120"/>
+        <ComboBox fx:id="seatCombo" prefWidth="150"/>
+        <Button text="Show Seats" onAction="#showSeats"/>
+    </HBox>
+
+    <Separator/>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Total Price:" prefWidth="120" style="-fx-font-weight: bold;"/>
+        <Label fx:id="priceLabel" text="0.00 AZN" style="-fx-font-size: 16; -fx-text-fill: green;"/>
+    </HBox>
+
+    <HBox spacing="20" alignment="CENTER">
+        <Button text="Book Now" prefWidth="150" onAction="#handleBooking" style="-fx-background-color: #4CAF50; -fx-text-fill: white;"/>
+        <Button text="Cancel" prefWidth="120" onAction="#handleCancel"/>
+    </HBox>
+
+    <Label fx:id="messageLabel" style="-fx-text-fill: red;"/>
+</VBox>

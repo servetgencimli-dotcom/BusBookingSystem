@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.MainLoginController"
+            prefHeight="700.0" prefWidth="900.0"
+            style="-fx-background-color: linear-gradient(to bottom right, #667eea 0%, #764ba2 100%);">
+
+    <center>
+        <VBox alignment="CENTER" spacing="30.0">
+            <padding>
+                <Insets bottom="50.0" left="50.0" right="50.0" top="50.0"/>
+            </padding>
+
+            <!-- Ağ Kart Container -->
+            <VBox alignment="CENTER" spacing="35.0"
+                  style="-fx-background-color: white;
+                         -fx-background-radius: 20;
+                         -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 30, 0, 0, 8);
+                         -fx-padding: 50;">
+
+                <VBox.margin>
+                    <Insets left="80.0" right="80.0"/>
+                </VBox.margin>
+
+                <!-- Logo və Başlıq -->
+                <VBox alignment="CENTER" spacing="12.0">
+                    <Label text="🚌" textAlignment="CENTER">
+                        <font>
+                            <Font size="72.0"/>
+                        </font>
+                    </Label>
+
+                    <Label text="Avtobus Rezervasiya Sistemi" textAlignment="CENTER"
+                           style="-fx-text-fill: #2d3748; -fx-font-weight: bold;">
+                        <font>
+                            <Font size="34.0"/>
+                        </font>
+                    </Label>
+
+                    <Label text="Xoş gəlmisiniz!" textAlignment="CENTER"
+                           style="-fx-text-fill: #718096;">
+                        <font>
+                            <Font size="18.0"/>
+                        </font>
+                    </Label>
+                </VBox>
+
+                <!-- Düymələr -->
+                <VBox spacing="18.0" alignment="CENTER" maxWidth="450.0" prefWidth="450.0">
+
+                    <!-- Daxil ol Button -->
+                    <Button fx:id="loginButton" text="Daxil ol"
+                            onAction="#handleLogin"
+                            prefWidth="450.0" prefHeight="60.0"
+                            styleClass="login-button"
+                            style="-fx-background-color: linear-gradient(to right, #667eea, #764ba2);
+                                   -fx-text-fill: white;
+                                   -fx-font-size: 18px;
+                                   -fx-font-weight: bold;
+                                   -fx-background-radius: 12;
+                                   -fx-cursor: hand;
+                                   -fx-effect: dropshadow(gaussian, rgba(102,126,234,0.4), 12, 0, 0, 4);"
+                            onMouseEntered="#onButtonHover"
+                            onMouseExited="#onButtonExit">
+                    </Button>
+
+                    <!-- Qeydiyyat Button -->
+                    <Button fx:id="registerButton" text="Qeydiyyat"
+                            onAction="#handleRegister"
+                            prefWidth="450.0" prefHeight="60.0"
+                            styleClass="register-button"
+                            style="-fx-background-color: linear-gradient(to right, #48bb78, #38a169);
+                                   -fx-text-fill: white;
+                                   -fx-font-size: 18px;
+                                   -fx-font-weight: bold;
+                                   -fx-background-radius: 12;
+                                   -fx-cursor: hand;
+                                   -fx-effect: dropshadow(gaussian, rgba(72,187,120,0.4), 12, 0, 0, 4);"
+                            onMouseEntered="#onButtonHover"
+                            onMouseExited="#onButtonExit">
+                    </Button>
+
+                    <!-- Çıxış Button -->
+                    <Button fx:id="exitButton" text="Çıxış"
+                            onAction="#handleExit"
+                            prefWidth="450.0" prefHeight="60.0"
+                            styleClass="exit-button"
+                            style="-fx-background-color: #f7fafc;
+                                   -fx-text-fill: #4a5568;
+                                   -fx-font-size: 18px;
+                                   -fx-font-weight: bold;
+                                   -fx-background-radius: 12;
+                                   -fx-border-color: #e2e8f0;
+                                   -fx-border-width: 2;
+                                   -fx-border-radius: 12;
+                                   -fx-cursor: hand;"
+                            onMouseEntered="#onButtonHover"
+                            onMouseExited="#onButtonExit">
+                    </Button>
+                </VBox>
+
+                <!-- Footer Text -->
+                <Label text="Təhlükəsiz və rahat səyahət üçün bizimlə olun!"
+                       textAlignment="CENTER"
+                       style="-fx-text-fill: #a0aec0; -fx-font-size: 13px;">
+                </Label>
+
+            </VBox>
+
+        </VBox>
+    </center>
+
+    <!-- Alt hissə - Copyright -->
+    <bottom>
+        <HBox alignment="CENTER" style="-fx-padding: 20;">
+            <Label text="© 2024 Avtobus Rezervasiya Sistemi. Bütün hüquqlar qorunur."
+                   style="-fx-text-fill: white; -fx-font-size: 12px;"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>

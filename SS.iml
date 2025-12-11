@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/Resource" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Resource/fxml" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/fff" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/kk" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/kk/llm" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/mmm" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/mmm/nnn" type="java-resource" />
+      <excludeFolder url="file://$MODULE_DIR$/Resource/gg" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" exported="" name="java" level="project" />
+  </component>
+</module>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.UserMenuController"
+            prefHeight="700.0" prefWidth="800.0"
+            style="-fx-background-color: #f5f5f5;">
+
+    <top>
+        <VBox alignment="CENTER" spacing="10.0"
+              style="-fx-background-color: #2196F3; -fx-padding: 20;">
+            <Label fx:id="welcomeLabel" text="Xoş gəldiniz!" textFill="white">
+                <font>
+                    <Font name="System Bold" size="24.0"/>
+                </font>
+            </Label>
+        </VBox>
+    </top>
+
+    <center>
+        <VBox alignment="CENTER" spacing="15.0">
+            <padding>
+                <Insets bottom="30.0" left="30.0" right="30.0" top="30.0"/>
+            </padding>
+
+            <Label text="İSTİFADƏÇİ MENYUSU" textAlignment="CENTER">
+                <font>
+                    <Font name="System Bold" size="22.0"/>
+                </font>
+            </Label>
+
+            <VBox spacing="12.0" alignment="CENTER" maxWidth="500.0">
+
+                <Button fx:id="globalTravelButton" text="🌍 Beynəlxalq Səyahət"
+                        onAction="#handleGlobalTravel"
+                        prefWidth="450.0" prefHeight="55.0"
+                        style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 16px; -fx-background-radius: 10;">
+                </Button>
+
+                <Button fx:id="domesticTravelButton" text="🏠 Daxili Səyahət"
+                        onAction="#handleDomesticTravel"
+                        prefWidth="450.0" prefHeight="55.0"
+                        style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-size: 16px; -fx-background-radius: 10;">
+                </Button>
+
+                <Button fx:id="cityTravelButton" text="🏙️ Şəhər Səyahəti"
+                        onAction="#handleCityTravel"
+                        prefWidth="450.0" prefHeight="55.0"
+                        style="-fx-background-color: #9C27B0; -fx-text-fill: white; -fx-font-size: 16px; -fx-background-radius: 10;">
+                </Button>
+
+                <Button fx:id="buyCityCardButton" text="💳 Şəhər Kartı Al"
+                        onAction="#handleBuyCityCard"
+                        prefWidth="450.0" prefHeight="55.0"
+                        style="-fx-background-color: #FF9800; -fx-text-fill: white; -fx-font-size: 16px; -fx-background-radius: 10;">
+                </Button>
+
+                <Button fx:id="myBookingsButton" text="📋 Mənim Rezervasiyalarım"
+                        onAction="#handleMyBookings"
+                        prefWidth="450.0" prefHeight="55.0"
+                        style="-fx-background-color: #00BCD4; -fx-text-fill: white; -fx-font-size: 16px; -fx-background-radius: 10;">
+                </Button>
+
+                <Button fx:id="updateProfileButton" text="⚙️ Profili Yenilə"
+                        onAction="#handleUpdateProfile"
+                        prefWidth="450.0" prefHeight="55.0"
+                        style="-fx-background-color: #607D8B; -fx-text-fill: white; -fx-font-size: 16px; -fx-background-radius: 10;">
+                </Button>
+
+                <Separator/>
+
+                <Button fx:id="logoutButton" text="🚪 Çıxış"
+                        onAction="#handleLogout"
+                        prefWidth="450.0" prefHeight="55.0"
+                        style="-fx-background-color: #f44336; -fx-text-fill: white; -fx-font-size: 16px; -fx-background-radius: 10;">
+                </Button>
+            </VBox>
+
+        </VBox>
+    </center>
+
+</BorderPane>

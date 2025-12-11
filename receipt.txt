@@ -1,0 +1,25 @@
+Bus_booking_project.Passenger: 1 | Route: Baku-Turkey City 1 | Interval: 06:00-07:00 | Price: 28.0 AZN
+Bus_booking_project.Passenger: SS | Route: Baku-Turkey City 1 | Interval: 06:00-07:00 | Price: 28.0 AZN
+Bus_booking_project.Passenger: 2 | Route: Baku-Ganja | Interval: 10:00-11:00 | Price: 16.0 AZN
+Bus_booking_project.Passenger: 1 | Route: Baku-Ganja | Interval: 10:00-11:00 | Price: 16.0 AZN
+Bus_booking_project.Passenger: SS | Route: Baku-Ganja | Interval: 10:00-11:00 | Price: 16.0 AZN
+Bus_booking_project.Passenger: 1 | Route: Baku-Turkey City 1 | Interval: 22:00-23:00 | Price: 27.0 AZN
+Bus_booking_project.Passenger: SS | Route: Baku-Ganja | Interval: 10:00-11:00 | Price: 16.0 AZN
+Bus_booking_project.Passenger: SS | Route: Baku-Turkey City 1 | Interval: 10:00-11:00 | Price: 27.5 AZN
+Bus_booking_project.Passenger: SS | Route: Baku-Turkey City 1 | Interval: 14:00-15:00 | Price: 27.5 AZN
+Bus_booking_project.Passenger: 1 | Route: Baku-Turkey City 1 | Interval: 10:00-11:00 | Price: 27.5 AZN
+Bus_booking_project.Passenger: SS | Route: Baku-Turkey City 1 | Interval: 10:00-11:00 | Price: 27.5 AZN
+Bus_booking_project.Passenger: SD | Route: Baku-Qabala | Interval: 10:00-11:00 | Price: 16.2 AZN
+Bus_booking_project.Passenger: F | Route: Baku-Qabala | Interval: 10:00-11:00 | Price: 16.2 AZN
+Bus_booking_project.Passenger: 1 | Route: Baku-Turkey City 2 | Interval: 10:00-11:00 | Price: 29.5 AZN
+Bus_booking_project.Passenger: ss | Route: Baku-Khachmaz | Interval: 14:00-15:00 | Price: 23.1 AZN
+Bus_booking_project.Passenger:  | Route: Baku-Ganja | Interval: 18:00-19:00 | Price: 16.5 AZN
+Bus_booking_project.Passenger:  | Route: Baku-Ganja | Interval: 06:00-07:00 | Price: 16.5 AZN
+Bus_booking_project.Passenger: SARVAT | Route: Baku-Ganja | Interval: 06:00-07:00 | Price: 16.5 AZN
+Bus_booking_project.Passenger: dolma | Route: Baku-Turkey City 1 | Interval: 10:00-11:00 | Price: 28.0 AZN
+Bus_booking_project.Passenger: sARVAT | Route: Baku-Turkey City 1 | Interval: 10:00-11:00 | Price: 28.0 AZN
+Bus_booking_project.Passenger: 2 | Route: Baku-Italy City 3 | Interval: 10:00-11:00 | Price: 32.0 AZN
+Bus_booking_project.Passenger: Sarvat | Route: Baku-Ganja | Interval: 06:00-07:00 | Price: 17.0 AZN
+Bus_booking_project.Passenger: SS | Route: Baku-Turkey City 1 | Interval: 10:00-11:00 | Price: 27.5 AZN
+Bus_booking_project.Passenger: Servet | Route: Baku-Turkey City 1 | Interval: 10:00-11:00 | Price: 28.0 AZN
+Bus_booking_project.Passenger: ss | Route: Baku-Turkey City 1 | Interval: 06:00-07:00 | Price: 28.0 AZN

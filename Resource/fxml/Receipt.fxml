@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.ReceiptController" prefWidth="500" prefHeight="600">
+
+    <top>
+        <VBox spacing="10" alignment="CENTER">
+            <padding>
+                <Insets top="20" right="20" bottom="10" left="20"/>
+            </padding>
+            <Label text="🎫 BOOKING RECEIPT" style="-fx-font-size: 24; -fx-font-weight: bold;"/>
+            <Separator/>
+        </VBox>
+    </top>
+
+    <center>
+        <VBox spacing="15">
+            <padding>
+                <Insets top="10" right="30" bottom="10" left="30"/>
+            </padding>
+
+            <HBox spacing="10">
+                <Label text="Passenger:" style="-fx-font-weight: bold;" prefWidth="120"/>
+                <Label fx:id="passengerLabel"/>
+            </HBox>
+
+            <HBox spacing="10">
+                <Label text="Route:" style="-fx-font-weight: bold;" prefWidth="120"/>
+                <Label fx:id="routeLabel"/>
+            </HBox>
+
+            <HBox spacing="10">
+                <Label text="Date:" style="-fx-font-weight: bold;" prefWidth="120"/>
+                <Label fx:id="dateLabel"/>
+            </HBox>
+
+            <HBox spacing="10">
+                <Label text="Time Interval:" style="-fx-font-weight: bold;" prefWidth="120"/>
+                <Label fx:id="intervalLabel"/>
+            </HBox>
+
+            <HBox spacing="10">
+                <Label text="Seat Number:" style="-fx-font-weight: bold;" prefWidth="120"/>
+                <Label fx:id="seatLabel"/>
+            </HBox>
+
+            <HBox spacing="10">
+                <Label text="Luggage:" style="-fx-font-weight: bold;" prefWidth="120"/>
+                <Label fx:id="luggageLabel"/>
+            </HBox>
+
+            <Separator/>
+
+            <HBox spacing="10">
+                <Label text="Price:" style="-fx-font-weight: bold; -fx-font-size: 16;" prefWidth="120"/>
+                <Label fx:id="priceLabel" style="-fx-font-size: 18; -fx-text-fill: green;"/>
+            </HBox>
+
+            <Separator/>
+
+            <TextArea fx:id="receiptTextArea" prefHeight="200" editable="false"/>
+        </VBox>
+    </center>
+
+    <bottom>
+        <HBox spacing="15" alignment="CENTER">
+            <padding>
+                <Insets top="10" right="20" bottom="20" left="20"/>
+            </padding>
+            <Button text="Print Receipt" onAction="#handlePrint" prefWidth="150"/>
+            <Button text="Save to File" onAction="#handleSave" prefWidth="150"/>
+            <Button text="Close" onAction="#handleClose" prefWidth="100"/>
+        </HBox>
+    </bottom>
+</BorderPane>

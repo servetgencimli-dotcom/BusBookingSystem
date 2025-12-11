@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <?import javafx.scene.control.*?>
+        <?import javafx.scene.layout.*?>
+        <?import javafx.geometry.Insets?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" xmlns="http://javafx.com/javafx"
+      fx:controller="controller.CityCardController"
+      spacing="15" alignment="CENTER" prefWidth="600" prefHeight="500">
+
+    <padding>
+        <Insets top="30" right="40" bottom="30" left="40"/>
+    </padding>
+
+    <Label text="Buy City Card" style="-fx-font-size: 24; -fx-font-weight: bold;"/>
+
+    <VBox spacing="10" alignment="CENTER_LEFT">
+        <RadioButton fx:id="globalCardRadio" text="GLOBAL Card (All cities - 60 AZN/month)" toggleGroup="$cardType"/>
+        <RadioButton fx:id="customCardRadio" text="Custom Cities Card" toggleGroup="$cardType" selected="true"/>
+    </VBox>
+
+    <Separator/>
+
+    <VBox fx:id="customCitiesBox" spacing="10">
+        <Label text="Select Cities:"/>
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <Label text="Number of Cities:" prefWidth="120"/>
+            <Spinner fx:id="cityCountSpinner" prefWidth="100" min="1" max="10" initialValue="1" onValueChanged="#updateCityFields"/>
+        </HBox>
+
+        <VBox fx:id="cityFieldsContainer" spacing="5"/>
+    </VBox>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Number of Months:" prefWidth="120"/>
+        <Spinner fx:id="monthsSpinner" prefWidth="100" min="1" max="12" initialValue="1" onValueChanged="#calculateTotal"/>
+    </HBox>
+
+    <Separator/>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Total Cost:" prefWidth="120" style="-fx-font-weight: bold; -fx-font-size: 16;"/>
+        <Label fx:id="totalLabel" text="0.00 AZN" style="-fx-font-size: 18; -fx-text-fill: green;"/>
+    </HBox>
+
+    <HBox spacing="20" alignment="CENTER">
+        <Button text="Purchase" prefWidth="150" onAction="#handlePurchase" style="-fx-background-color: #2196F3; -fx-text-fill: white;"/>
+        <Button text="Cancel" prefWidth="120" onAction="#handleCancel"/>
+    </HBox>
+
+    <Label fx:id="messageLabel" style="-fx-text-fill: red;"/>
+</VBox>

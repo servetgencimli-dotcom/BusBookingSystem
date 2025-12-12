@@ -31,9 +31,6 @@ public class UserMenuController {
     private Button buyCityCardButton;
 
     @FXML
-    private Button myBookingsButton;
-
-    @FXML
     private Button updateProfileButton;
 
     @FXML
@@ -67,14 +64,7 @@ public class UserMenuController {
         MainApp.loadScene("/fxml/CityCard.fxml", "Şəhər Kartı Alış Sistemi");
     }
 
-    @FXML
-    private void handleMyBookings(ActionEvent event) {
-        User user = SessionManager.getCurrentUser();
-        if (user != null) {
-            BusBookingSystem.bookingManager.displayUserBookings(user.fin);
-            MainApp.loadScene("/fxml/ViewBookings.fxml", "Rezervasiya Sistemi");
-        }
-    }
+
 
     @FXML
     private void handleUpdateProfile(ActionEvent event) {

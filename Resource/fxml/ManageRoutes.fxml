@@ -3,10 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.text.*?>
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.shape.*?>
 
 <StackPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
            fx:controller="controller.ManageRoutesController"

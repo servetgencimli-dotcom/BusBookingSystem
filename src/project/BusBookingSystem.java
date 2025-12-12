@@ -386,9 +386,8 @@ public class BusBookingSystem {
             System.out.println("2. Domestic Travel");
             System.out.println("3. City Travel");
             System.out.println("4. Buy City Card");
-            System.out.println("5. My Bookings");
-            System.out.println("6. Update Profile");
-            System.out.println("7. Logout");
+            System.out.println("5. Update Profile");
+            System.out.println("6. Logout");
             System.out.print("Choose option: ");
             String opt = sc.nextLine().trim();
             switch (opt) {
@@ -405,12 +404,9 @@ public class BusBookingSystem {
                     handleCityCard(user);
                     break;
                 case "5":
-                    bookingManager.displayUserBookings(user.name);
-                    break;
-                case "6":
                     updateProfile(user);
                     break;
-                case "7":
+                case "6":
                     System.out.println("Logged out.");
                     return;
                 default:

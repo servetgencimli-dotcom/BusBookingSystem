@@ -3,7 +3,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.text.*?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.effect.*?>
 
@@ -207,7 +206,6 @@
                             </HBox>
                         </VBox>
 
-                        <!-- Password Field -->
                         <VBox spacing="10">
                             <Label text="ŞİFRƏ"
                                    style="-fx-font-size: 13;

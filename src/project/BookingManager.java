@@ -19,16 +19,7 @@ public class BookingManager {
         return bookings;
     }
 
-    public void displayUserBookings(String fin) {
-        boolean has = false;
-        for (Booking b : bookings) {
-            if (b.getPassenger().getFin().equals(fin)) {
-                b.displayBooking();
-                has = true;
-            }
-        }
-        if (!has) System.out.println("No bookings found for " + fin);
-    }
+
 
     public void displayAllBookings() {
         if (bookings.isEmpty()) {

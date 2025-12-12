@@ -36,7 +36,9 @@ public class RegisterController {
     @FXML
     private Label messageLabel;
 
+    @FXML
     private ToggleGroup genderGroup;
+    @FXML
     private ToggleGroup userTypeGroup;
 
     @FXML

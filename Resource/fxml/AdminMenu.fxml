@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="controller.AdminMenuController"
@@ -57,7 +58,6 @@
                     <Label text="Sistem idarəetmə panelindən istifadə edərək bütün əməliyyatları idarə edin"
                            style="-fx-font-size: 14px; -fx-text-fill: #718096;"/>
                 </VBox>
-
                 <!-- Stats Cards Row -->
                 <HBox spacing="20.0" alignment="CENTER">
 
@@ -114,7 +114,7 @@
 
                         <!-- Global Routes Card -->
                         <VBox alignment="TOP_LEFT" spacing="15"
-                              style="-fx-background-color: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                              style="-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #667eea 0%, #764ba2 100%);
                                      -fx-background-radius: 15;
                                      -fx-padding: 25;
                                      -fx-effect: dropshadow(gaussian, rgba(102,126,234,0.4), 20, 0, 0, 8);"
@@ -144,7 +144,7 @@
 
                         <!-- Domestic Routes Card -->
                         <VBox alignment="TOP_LEFT" spacing="15"
-                              style="-fx-background-color: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+                              style="-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #f093fb 0%, #f5576c 100%);
                                      -fx-background-radius: 15;
                                      -fx-padding: 25;
                                      -fx-effect: dropshadow(gaussian, rgba(245,87,108,0.4), 20, 0, 0, 8);"
@@ -174,12 +174,12 @@
 
                         <!-- City Routes Card -->
                         <VBox alignment="TOP_LEFT" spacing="15"
-                              style="-fx-background-color: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+                              style="-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #4facfe 0%, #00f2fe 100%);
                                      -fx-background-radius: 15;
                                      -fx-padding: 25;
                                      -fx-effect: dropshadow(gaussian, rgba(79,172,254,0.4), 20, 0, 0, 8);"
                               HBox.hgrow="ALWAYS">
-                            <Label text="🏙️" style="-fx-font-size: 36px;"/>
+                            <Label text="🏙" style="-fx-font-size: 36px;"/>
                             <VBox spacing="5">
                                 <Label text="Şəhər Marşrutları"
                                        style="-fx-text-fill: white; -fx-font-size: 18px; -fx-font-weight: bold;"/>

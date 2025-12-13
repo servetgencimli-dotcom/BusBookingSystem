@@ -6,7 +6,7 @@
 
 <StackPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
            fx:controller="controller.CityTravelController"
-           style="-fx-background-color: linear-gradient(to bottom right, #667eea, #764ba2);">
+           style="-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #667eea, #764ba2);">
 
     <!-- Ana Container -->
     <BorderPane prefWidth="1000" prefHeight="700"
@@ -27,11 +27,11 @@
                              -fx-border-color: #e5e7eb;
                              -fx-border-width: 0 0 1 0;">
                     <HBox alignment="CENTER_LEFT" spacing="12" HBox.hgrow="ALWAYS">
-                        <StackPane style="-fx-background-color: linear-gradient(to right, #667eea, #764ba2);
+                        <StackPane style="-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #667eea, #764ba2);
                                           -fx-background-radius: 12;
                                           -fx-pref-width: 50;
                                           -fx-pref-height: 50;">
-                            <Label text="🏙️" style="-fx-font-size: 28; -fx-text-fill: white;"/>
+                            <Label text="🏙" style="-fx-font-size: 28; -fx-text-fill: white;"/>
                         </StackPane>
                         <VBox>
                             <Label text="City Travel"
@@ -73,7 +73,7 @@
                 <VBox style="-fx-background-color: linear-gradient(to right, #f9fafb, #f3f4f6);
                              -fx-padding: 40 40 30 40;">
                     <HBox alignment="CENTER_LEFT" spacing="15">
-                        <StackPane style="-fx-background-color: linear-gradient(135deg, #8b5cf6, #7c3aed);
+                        <StackPane style="-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #8b5cf6, #7c3aed);
                                           -fx-background-radius: 15;
                                           -fx-pref-width: 70;
                                           -fx-pref-height: 70;
@@ -94,227 +94,145 @@
             </VBox>
         </top>
 
-        <!-- Main Content -->
+        <!-- Main Content with ScrollPane -->
         <center>
-            <HBox spacing="30" alignment="CENTER" style="-fx-padding: 40;">
+            <ScrollPane fitToWidth="true"
+                        style="-fx-background-color: transparent;
+                               -fx-background: transparent;">
+                <HBox spacing="30" alignment="CENTER" style="-fx-padding: 40;">
 
-                <!-- Sidebar Info Card -->
-                <VBox spacing="20" prefWidth="320"
-                      style="-fx-background-color: linear-gradient(135deg, #8b5cf6, #7c3aed);
-                             -fx-background-radius: 20;
-                             -fx-padding: 30;
-                             -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 20, 0, 0, 5);">
-                    <VBox spacing="15">
-                        <Label text="🎫 Şəhər Kartı"
-                               style="-fx-font-size: 20;
-                                      -fx-font-weight: bold;
-                                      -fx-text-fill: white;"/>
+                    <!-- Sidebar Info Card -->
+                    <VBox spacing="20" prefWidth="320"
+                          style="-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #8b5cf6, #7c3aed);
+                                 -fx-background-radius: 20;
+                                 -fx-padding: 30;
+                                 -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 20, 0, 0, 5);">
+                        <VBox spacing="15">
+                            <Label text="🎫 Şəhər Kartı"
+                                   style="-fx-font-size: 20;
+                                          -fx-font-weight: bold;
+                                          -fx-text-fill: white;"/>
 
-                        <VBox spacing="12">
-                            <HBox alignment="CENTER_LEFT" spacing="12"
-                                  style="-fx-background-color: rgba(255,255,255,0.2);
-                                         -fx-background-radius: 12;
-                                         -fx-padding: 15;">
-                                <Label text="💳" style="-fx-font-size: 24;"/>
-                                <VBox>
-                                    <Label text="Kart Endirim"
-                                           style="-fx-text-fill: rgba(255,255,255,0.9);
-                                                  -fx-font-size: 13;"/>
-                                    <Label text="20% OFF"
-                                           style="-fx-text-fill: white;
-                                                  -fx-font-size: 20;
-                                                  -fx-font-weight: bold;"/>
-                                </VBox>
-                            </HBox>
+                            <VBox spacing="12">
+                                <HBox alignment="CENTER_LEFT" spacing="12"
+                                      style="-fx-background-color: rgba(255,255,255,0.2);
+                                             -fx-background-radius: 12;
+                                             -fx-padding: 15;">
+                                    <Label text="💳" style="-fx-font-size: 24;"/>
+                                    <VBox>
+                                        <Label text="Kart Endirim"
+                                               style="-fx-text-fill: rgba(255,255,255,0.9);
+                                                      -fx-font-size: 13;"/>
+                                        <Label text="20% OFF"
+                                               style="-fx-text-fill: white;
+                                                      -fx-font-size: 20;
+                                                      -fx-font-weight: bold;"/>
+                                    </VBox>
+                                </HBox>
 
-                            <HBox alignment="CENTER_LEFT" spacing="12"
-                                  style="-fx-background-color: rgba(255,255,255,0.2);
-                                         -fx-background-radius: 12;
-                                         -fx-padding: 15;">
-                                <Label text="🚌" style="-fx-font-size: 24;"/>
-                                <VBox>
-                                    <Label text="Aktiv Marşrutlar"
-                                           style="-fx-text-fill: rgba(255,255,255,0.9);
-                                                  -fx-font-size: 13;"/>
-                                    <Label text="45+ Xətt"
-                                           style="-fx-text-fill: white;
-                                                  -fx-font-size: 20;
-                                                  -fx-font-weight: bold;"/>
-                                </VBox>
-                            </HBox>
+                                <HBox alignment="CENTER_LEFT" spacing="12"
+                                      style="-fx-background-color: rgba(255,255,255,0.2);
+                                             -fx-background-radius: 12;
+                                             -fx-padding: 15;">
+                                    <Label text="🚌" style="-fx-font-size: 24;"/>
+                                    <VBox>
+                                        <Label text="Aktiv Marşrutlar"
+                                               style="-fx-text-fill: rgba(255,255,255,0.9);
+                                                      -fx-font-size: 13;"/>
+                                        <Label text="45+ Xətt"
+                                               style="-fx-text-fill: white;
+                                                      -fx-font-size: 20;
+                                                      -fx-font-weight: bold;"/>
+                                    </VBox>
+                                </HBox>
 
-                            <HBox alignment="CENTER_LEFT" spacing="12"
-                                  style="-fx-background-color: rgba(255,255,255,0.2);
-                                         -fx-background-radius: 12;
-                                         -fx-padding: 15;">
-                                <Label text="⏰" style="-fx-font-size: 24;"/>
-                                <VBox>
-                                    <Label text="İş Saatları"
-                                           style="-fx-text-fill: rgba(255,255,255,0.9);
-                                                  -fx-font-size: 13;"/>
-                                    <Label text="05:00 - 00:00"
-                                           style="-fx-text-fill: white;
-                                                  -fx-font-size: 20;
-                                                  -fx-font-weight: bold;"/>
-                                </VBox>
-                            </HBox>
+                                <HBox alignment="CENTER_LEFT" spacing="12"
+                                      style="-fx-background-color: rgba(255,255,255,0.2);
+                                             -fx-background-radius: 12;
+                                             -fx-padding: 15;">
+                                    <Label text="⏰" style="-fx-font-size: 24;"/>
+                                    <VBox>
+                                        <Label text="İş Saatları"
+                                               style="-fx-text-fill: rgba(255,255,255,0.9);
+                                                      -fx-font-size: 13;"/>
+                                        <Label text="05:00 - 00:00"
+                                               style="-fx-text-fill: white;
+                                                      -fx-font-size: 20;
+                                                      -fx-font-weight: bold;"/>
+                                    </VBox>
+                                </HBox>
+                            </VBox>
+                        </VBox>
+
+                        <Separator style="-fx-background-color: rgba(255,255,255,0.3);"/>
+
+                        <VBox spacing="10">
+                            <Label text="✨ Üstünlüklər"
+                                   style="-fx-font-size: 16;
+                                          -fx-font-weight: bold;
+                                          -fx-text-fill: #fef3c7;"/>
+                            <VBox spacing="8">
+                                <HBox spacing="8">
+                                    <Label text="✓" style="-fx-text-fill: #10b981; -fx-font-size: 14; -fx-font-weight: bold;"/>
+                                    <Label text="Limitsiz səyahət"
+                                           style="-fx-text-fill: rgba(255,255,255,0.95);
+                                                  -fx-font-size: 13;
+                                                  -fx-wrap-text: true;"/>
+                                </HBox>
+                                <HBox spacing="8">
+                                    <Label text="✓" style="-fx-text-fill: #10b981; -fx-font-size: 14; -fx-font-weight: bold;"/>
+                                    <Label text="Bütün marşrutlarda keçərli"
+                                           style="-fx-text-fill: rgba(255,255,255,0.95);
+                                                  -fx-font-size: 13;
+                                                  -fx-wrap-text: true;"/>
+                                </HBox>
+                                <HBox spacing="8">
+                                    <Label text="✓" style="-fx-text-fill: #10b981; -fx-font-size: 14; -fx-font-weight: bold;"/>
+                                    <Label text="Sürətli minmə prosesi"
+                                           style="-fx-text-fill: rgba(255,255,255,0.95);
+                                                  -fx-font-size: 13;
+                                                  -fx-wrap-text: true;"/>
+                                </HBox>
+                            </VBox>
                         </VBox>
                     </VBox>
 
-                    <Separator style="-fx-background-color: rgba(255,255,255,0.3);"/>
+                    <!-- Main Form Card -->
+                    <VBox spacing="25" prefWidth="500"
+                          style="-fx-background-color: white;
+                                 -fx-background-radius: 20;
+                                 -fx-padding: 40;
+                                 -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 25, 0, 0, 5);">
 
-                    <VBox spacing="10">
-                        <Label text="✨ Üstünlüklər"
-                               style="-fx-font-size: 16;
-                                      -fx-font-weight: bold;
-                                      -fx-text-fill: #fef3c7;"/>
                         <VBox spacing="8">
-                            <HBox spacing="8">
-                                <Label text="✓" style="-fx-text-fill: #10b981; -fx-font-size: 14; -fx-font-weight: bold;"/>
-                                <Label text="Limitsiz səyahət"
-                                       style="-fx-text-fill: rgba(255,255,255,0.95);
-                                              -fx-font-size: 13;
-                                              -fx-wrap-text: true;"/>
-                            </HBox>
-                            <HBox spacing="8">
-                                <Label text="✓" style="-fx-text-fill: #10b981; -fx-font-size: 14; -fx-font-weight: bold;"/>
-                                <Label text="Bütün marşrutlarda keçərli"
-                                       style="-fx-text-fill: rgba(255,255,255,0.95);
-                                              -fx-font-size: 13;
-                                              -fx-wrap-text: true;"/>
-                            </HBox>
-                            <HBox spacing="8">
-                                <Label text="✓" style="-fx-text-fill: #10b981; -fx-font-size: 14; -fx-font-weight: bold;"/>
-                                <Label text="Sürətli minmə prosesi"
-                                       style="-fx-text-fill: rgba(255,255,255,0.95);
-                                              -fx-font-size: 13;
-                                              -fx-wrap-text: true;"/>
-                            </HBox>
+                            <Label text="Rezervasiya Forması"
+                                   style="-fx-font-size: 24;
+                                          -fx-font-weight: bold;
+                                          -fx-text-fill: #111827;"/>
+                            <Label text="Şəhər və sərnişin məlumatlarını daxil edin"
+                                   style="-fx-font-size: 14;
+                                          -fx-text-fill: #6b7280;"/>
                         </VBox>
-                    </VBox>
-                </VBox>
 
-                <!-- Main Form Card -->
-                <VBox spacing="25" prefWidth="500"
-                      style="-fx-background-color: white;
-                             -fx-background-radius: 20;
-                             -fx-padding: 40;
-                             -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 25, 0, 0, 5);">
+                        <Separator style="-fx-background-color: #e5e7eb;"/>
 
-                    <VBox spacing="8">
-                        <Label text="Rezervasiya Forması"
-                               style="-fx-font-size: 24;
-                                      -fx-font-weight: bold;
-                                      -fx-text-fill: #111827;"/>
-                        <Label text="Şəhər və sərnişin məlumatlarını daxil edin"
-                               style="-fx-font-size: 14;
-                                      -fx-text-fill: #6b7280;"/>
-                    </VBox>
+                        <!-- Trip Information -->
+                        <VBox spacing="8">
+                            <Label text="🗺 Səyahət Məlumatları"
+                                   style="-fx-font-size: 18;
+                                          -fx-font-weight: bold;
+                                          -fx-text-fill: #374151;"/>
+                        </VBox>
 
-                    <Separator style="-fx-background-color: #e5e7eb;"/>
-
-                    <!-- Trip Information -->
-                    <VBox spacing="8">
-                        <Label text="🗺️ Səyahət Məlumatları"
-                               style="-fx-font-size: 18;
-                                      -fx-font-weight: bold;
-                                      -fx-text-fill: #374151;"/>
-                    </VBox>
-
-                    <!-- City Name -->
-                    <VBox spacing="10">
-                        <Label text="Şəhər Adı"
-                               style="-fx-font-size: 14;
-                                      -fx-font-weight: 600;
-                                      -fx-text-fill: #374151;"/>
-                        <TextField fx:id="cityNameField"
-                                   promptText="Məs: Bakı"
-                                   prefWidth="420"
-                                   prefHeight="45"
-                                   style="-fx-background-color: #f9fafb;
-                                          -fx-border-color: #d1d5db;
-                                          -fx-border-width: 2;
-                                          -fx-border-radius: 10;
-                                          -fx-background-radius: 10;
-                                          -fx-font-size: 14;
-                                          -fx-padding: 10 15;"/>
-                    </VBox>
-
-                    <!-- Time Interval -->
-                    <VBox spacing="10">
-                        <Label text="Vaxt Aralığı"
-                               style="-fx-font-size: 14;
-                                      -fx-font-weight: 600;
-                                      -fx-text-fill: #374151;"/>
-                        <ComboBox fx:id="intervalCombo"
-                                  promptText="Vaxtı seçin..."
-                                  prefWidth="420"
-                                  prefHeight="45"
-                                  style="-fx-background-color: #f9fafb;
-                                         -fx-border-color: #d1d5db;
-                                         -fx-border-width: 2;
-                                         -fx-border-radius: 10;
-                                         -fx-background-radius: 10;
-                                         -fx-font-size: 14;"/>
-                    </VBox>
-
-                    <Separator style="-fx-background-color: #e5e7eb;"/>
-
-                    <!-- Passenger Information -->
-                    <VBox spacing="8">
-                        <Label text="👤 Sərnişin Məlumatları"
-                               style="-fx-font-size: 18;
-                                      -fx-font-weight: bold;
-                                      -fx-text-fill: #374151;"/>
-                    </VBox>
-
-                    <!-- Passenger Name -->
-                    <VBox spacing="10">
-                        <Label text="Ad Soyad"
-                               style="-fx-font-size: 14;
-                                      -fx-font-weight: 600;
-                                      -fx-text-fill: #374151;"/>
-                        <TextField fx:id="passengerNameField"
-                                   promptText="Məs: Əli Məmmədov"
-                                   prefWidth="420"
-                                   prefHeight="45"
-                                   style="-fx-background-color: #f9fafb;
-                                          -fx-border-color: #d1d5db;
-                                          -fx-border-width: 2;
-                                          -fx-border-radius: 10;
-                                          -fx-background-radius: 10;
-                                          -fx-font-size: 14;
-                                          -fx-padding: 10 15;"/>
-                    </VBox>
-
-                    <!-- FIN -->
-                    <VBox spacing="10">
-                        <Label text="FIN Kod"
-                               style="-fx-font-size: 14;
-                                      -fx-font-weight: 600;
-                                      -fx-text-fill: #374151;"/>
-                        <TextField fx:id="passengerFinField"
-                                   promptText="7 hərfli FIN kod"
-                                   prefWidth="420"
-                                   prefHeight="45"
-                                   style="-fx-background-color: #f9fafb;
-                                          -fx-border-color: #d1d5db;
-                                          -fx-border-width: 2;
-                                          -fx-border-radius: 10;
-                                          -fx-background-radius: 10;
-                                          -fx-font-size: 14;
-                                          -fx-padding: 10 15;"/>
-                    </VBox>
-
-                    <!-- Age and Gender -->
-                    <HBox spacing="15">
-                        <VBox spacing="10" HBox.hgrow="ALWAYS">
-                            <Label text="Yaş"
+                        <!-- City Name -->
+                        <VBox spacing="10">
+                            <Label text="Şəhər Adı"
                                    style="-fx-font-size: 14;
                                           -fx-font-weight: 600;
                                           -fx-text-fill: #374151;"/>
-                            <TextField fx:id="passengerAgeField"
-                                       promptText="18"
+                            <TextField fx:id="cityNameField"
+                                       promptText="Məs: Bakı"
+                                       prefWidth="420"
                                        prefHeight="45"
                                        style="-fx-background-color: #f9fafb;
                                               -fx-border-color: #d1d5db;
@@ -325,15 +243,16 @@
                                               -fx-padding: 10 15;"/>
                         </VBox>
 
-                        <VBox spacing="10" HBox.hgrow="ALWAYS">
-                            <Label text="Cins"
+                        <!-- Time Interval -->
+                        <VBox spacing="10">
+                            <Label text="Vaxt Aralığı"
                                    style="-fx-font-size: 14;
                                           -fx-font-weight: 600;
                                           -fx-text-fill: #374151;"/>
-                            <ComboBox fx:id="genderCombo"
-                                      promptText="Seçin"
+                            <ComboBox fx:id="intervalCombo"
+                                      promptText="Vaxtı seçin..."
+                                      prefWidth="420"
                                       prefHeight="45"
-                                      maxWidth="Infinity"
                                       style="-fx-background-color: #f9fafb;
                                              -fx-border-color: #d1d5db;
                                              -fx-border-width: 2;
@@ -341,100 +260,185 @@
                                              -fx-background-radius: 10;
                                              -fx-font-size: 14;"/>
                         </VBox>
-                    </HBox>
 
-                    <!-- Luggage -->
-                    <VBox spacing="10">
-                        <Label text="Baqaj Çəkisi (kg)"
-                               style="-fx-font-size: 14;
-                                      -fx-font-weight: 600;
-                                      -fx-text-fill: #374151;"/>
-                        <TextField fx:id="luggageField"
-                                   promptText="Məs: 10"
-                                   prefWidth="420"
-                                   prefHeight="45"
-                                   style="-fx-background-color: #f9fafb;
-                                          -fx-border-color: #d1d5db;
-                                          -fx-border-width: 2;
-                                          -fx-border-radius: 10;
-                                          -fx-background-radius: 10;
-                                          -fx-font-size: 14;
-                                          -fx-padding: 10 15;"/>
-                    </VBox>
+                        <Separator style="-fx-background-color: #e5e7eb;"/>
 
-                    <!-- City Card Checkbox -->
-                    <HBox alignment="CENTER_LEFT" spacing="12"
-                          style="-fx-background-color: #fef3c7;
-                                 -fx-background-radius: 12;
-                                 -fx-padding: 15 20;">
-                        <Label text="💳" style="-fx-font-size: 22;"/>
-                        <CheckBox fx:id="useCityCardCheckbox"
-                                  text="Şəhər Kartı istifadə et (20% endirim)"
-                                  style="-fx-font-size: 14;
-                                         -fx-font-weight: 600;
-                                         -fx-text-fill: #92400e;"/>
-                    </HBox>
-
-                    <Separator style="-fx-background-color: #e5e7eb;"/>
-
-                    <!-- Price Display -->
-                    <HBox spacing="15" alignment="CENTER"
-                          style="-fx-background-color: #f0fdf4;
-                                 -fx-background-radius: 12;
-                                 -fx-padding: 20;">
-                        <VBox spacing="5" alignment="CENTER">
-                            <Label text="Ümumi Qiymət"
-                                   style="-fx-font-size: 14;
-                                          -fx-text-fill: #166534;"/>
-                            <HBox spacing="8" alignment="CENTER">
-                                <Label text="💰" style="-fx-font-size: 22;"/>
-                                <Label fx:id="priceLabel"
-                                       text="0.00 AZN"
-                                       style="-fx-font-size: 26;
-                                              -fx-font-weight: bold;
-                                              -fx-text-fill: #15803d;"/>
-                            </HBox>
+                        <!-- Passenger Information -->
+                        <VBox spacing="8">
+                            <Label text="👤 Sərnişin Məlumatları"
+                                   style="-fx-font-size: 18;
+                                          -fx-font-weight: bold;
+                                          -fx-text-fill: #374151;"/>
                         </VBox>
-                    </HBox>
 
-                    <!-- Action Buttons -->
-                    <HBox spacing="15" alignment="CENTER">
-                        <Button text="✓  Rezerv Et"
-                                onAction="#handleBooking"
-                                prefWidth="200"
-                                prefHeight="50"
-                                style="-fx-background-color: linear-gradient(to right, #8b5cf6, #7c3aed);
-                                       -fx-text-fill: white;
-                                       -fx-font-size: 16;
-                                       -fx-font-weight: bold;
-                                       -fx-background-radius: 12;
-                                       -fx-cursor: hand;
-                                       -fx-effect: dropshadow(gaussian, rgba(139,92,246,0.4), 15, 0, 0, 5);"/>
+                        <!-- Passenger Name -->
+                        <VBox spacing="10">
+                            <Label text="Ad Soyad"
+                                   style="-fx-font-size: 14;
+                                          -fx-font-weight: 600;
+                                          -fx-text-fill: #374151;"/>
+                            <TextField fx:id="passengerNameField"
+                                       promptText="Məs: Əli Məmmədov"
+                                       prefWidth="420"
+                                       prefHeight="45"
+                                       style="-fx-background-color: #f9fafb;
+                                              -fx-border-color: #d1d5db;
+                                              -fx-border-width: 2;
+                                              -fx-border-radius: 10;
+                                              -fx-background-radius: 10;
+                                              -fx-font-size: 14;
+                                              -fx-padding: 10 15;"/>
+                        </VBox>
 
-                        <Button text="✕  Ləğv Et"
-                                onAction="#handleCancel"
-                                prefWidth="150"
-                                prefHeight="50"
-                                style="-fx-background-color: white;
-                                       -fx-text-fill: #ef4444;
-                                       -fx-font-size: 15;
-                                       -fx-font-weight: 600;
-                                       -fx-background-radius: 12;
-                                       -fx-border-color: #fecaca;
-                                       -fx-border-width: 2;
-                                       -fx-border-radius: 12;
-                                       -fx-cursor: hand;"/>
-                    </HBox>
+                        <!-- FIN -->
+                        <VBox spacing="10">
+                            <Label text="FIN Kod"
+                                   style="-fx-font-size: 14;
+                                          -fx-font-weight: 600;
+                                          -fx-text-fill: #374151;"/>
+                            <TextField fx:id="passengerFinField"
+                                       promptText="7 hərfli FIN kod"
+                                       prefWidth="420"
+                                       prefHeight="45"
+                                       style="-fx-background-color: #f9fafb;
+                                              -fx-border-color: #d1d5db;
+                                              -fx-border-width: 2;
+                                              -fx-border-radius: 10;
+                                              -fx-background-radius: 10;
+                                              -fx-font-size: 14;
+                                              -fx-padding: 10 15;"/>
+                        </VBox>
 
-                    <!-- Message Label -->
-                    <HBox alignment="CENTER">
-                        <Label fx:id="messageLabel"
-                               style="-fx-text-fill: #ef4444;
-                                      -fx-font-size: 14;
-                                      -fx-font-weight: 600;"/>
-                    </HBox>
-                </VBox>
-            </HBox>
+                        <!-- Age and Gender -->
+                        <HBox spacing="15">
+                            <VBox spacing="10" HBox.hgrow="ALWAYS">
+                                <Label text="Yaş"
+                                       style="-fx-font-size: 14;
+                                              -fx-font-weight: 600;
+                                              -fx-text-fill: #374151;"/>
+                                <TextField fx:id="passengerAgeField"
+                                           promptText="18"
+                                           prefHeight="45"
+                                           style="-fx-background-color: #f9fafb;
+                                                  -fx-border-color: #d1d5db;
+                                                  -fx-border-width: 2;
+                                                  -fx-border-radius: 10;
+                                                  -fx-background-radius: 10;
+                                                  -fx-font-size: 14;
+                                                  -fx-padding: 10 15;"/>
+                            </VBox>
+
+                            <VBox spacing="10" HBox.hgrow="ALWAYS">
+                                <Label text="Cins"
+                                       style="-fx-font-size: 14;
+                                              -fx-font-weight: 600;
+                                              -fx-text-fill: #374151;"/>
+                                <ComboBox fx:id="genderCombo"
+                                          promptText="Seçin"
+                                          prefHeight="45"
+                                          maxWidth="Infinity"
+                                          style="-fx-background-color: #f9fafb;
+                                                 -fx-border-color: #d1d5db;
+                                                 -fx-border-width: 2;
+                                                 -fx-border-radius: 10;
+                                                 -fx-background-radius: 10;
+                                                 -fx-font-size: 14;"/>
+                            </VBox>
+                        </HBox>
+
+                        <!-- Luggage -->
+                        <VBox spacing="10">
+                            <Label text="Baqaj Çəkisi (kg)"
+                                   style="-fx-font-size: 14;
+                                          -fx-font-weight: 600;
+                                          -fx-text-fill: #374151;"/>
+                            <TextField fx:id="luggageField"
+                                       promptText="Məs: 10"
+                                       prefWidth="420"
+                                       prefHeight="45"
+                                       style="-fx-background-color: #f9fafb;
+                                              -fx-border-color: #d1d5db;
+                                              -fx-border-width: 2;
+                                              -fx-border-radius: 10;
+                                              -fx-background-radius: 10;
+                                              -fx-font-size: 14;
+                                              -fx-padding: 10 15;"/>
+                        </VBox>
+
+                        <!-- City Card Checkbox -->
+                        <HBox alignment="CENTER_LEFT" spacing="12"
+                              style="-fx-background-color: #fef3c7;
+                                     -fx-background-radius: 12;
+                                     -fx-padding: 15 20;">
+                            <Label text="💳" style="-fx-font-size: 22;"/>
+                            <CheckBox fx:id="useCityCardCheckbox"
+                                      text="Şəhər Kartı istifadə et (20% endirim)"
+                                      style="-fx-font-size: 14;
+                                             -fx-font-weight: 600;
+                                             -fx-text-fill: #92400e;"/>
+                        </HBox>
+
+                        <Separator style="-fx-background-color: #e5e7eb;"/>
+
+                        <!-- Price Display -->
+                        <HBox spacing="15" alignment="CENTER"
+                              style="-fx-background-color: #f0fdf4;
+                                     -fx-background-radius: 12;
+                                     -fx-padding: 20;">
+                            <VBox spacing="5" alignment="CENTER">
+                                <Label text="Ümumi Qiymət"
+                                       style="-fx-font-size: 14;
+                                              -fx-text-fill: #166534;"/>
+                                <HBox spacing="8" alignment="CENTER">
+                                    <Label text="💰" style="-fx-font-size: 22;"/>
+                                    <Label fx:id="priceLabel"
+                                           text="0.00 AZN"
+                                           style="-fx-font-size: 26;
+                                                  -fx-font-weight: bold;
+                                                  -fx-text-fill: #15803d;"/>
+                                </HBox>
+                            </VBox>
+                        </HBox>
+
+                        <!-- Action Buttons -->
+                        <HBox spacing="15" alignment="CENTER">
+                            <Button text="✓  Rezerv Et"
+                                    onAction="#handleBooking"
+                                    prefWidth="200"
+                                    prefHeight="50"
+                                    style="-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #8b5cf6, #7c3aed);
+                                           -fx-text-fill: white;
+                                           -fx-font-size: 16;
+                                           -fx-font-weight: bold;
+                                           -fx-background-radius: 12;
+                                           -fx-cursor: hand;
+                                           -fx-effect: dropshadow(gaussian, rgba(139,92,246,0.4), 15, 0, 0, 5);"/>
+
+                            <Button text="✕  Ləğv Et"
+                                    onAction="#handleCancel"
+                                    prefWidth="150"
+                                    prefHeight="50"
+                                    style="-fx-background-color: white;
+                                           -fx-text-fill: #ef4444;
+                                           -fx-font-size: 15;
+                                           -fx-font-weight: 600;
+                                           -fx-background-radius: 12;
+                                           -fx-border-color: #fecaca;
+                                           -fx-border-width: 2;
+                                           -fx-border-radius: 12;
+                                           -fx-cursor: hand;"/>
+                        </HBox>
+
+                        <!-- Message Label -->
+                        <HBox alignment="CENTER">
+                            <Label fx:id="messageLabel"
+                                   style="-fx-text-fill: #ef4444;
+                                          -fx-font-size: 14;
+                                          -fx-font-weight: 600;"/>
+                        </HBox>
+                    </VBox>
+                </HBox>
+            </ScrollPane>
         </center>
 
         <!-- Footer -->

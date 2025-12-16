@@ -29,6 +29,7 @@ public class UserDAO {
         }
     }
 
+
     public static User loadUser(String fin, String pw) {
         String sql = "SELECT * FROM users WHERE fin=? AND password=?";
         try (Connection conn = DB.connect(); PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -83,4 +84,6 @@ public class UserDAO {
         }
         return list;
     }
-}
+
+    }
+

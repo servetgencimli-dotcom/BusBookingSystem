@@ -19,6 +19,7 @@ public class Booking {
         this.interval = interval;
     }
 
+    // Getters
     public Passenger getPassenger() {
         return passenger;
     }
@@ -43,8 +44,38 @@ public class Booking {
         return interval;
     }
 
-    public void displayBooking() {
-        System.out.println("Bus_booking_project.Booking -> " + passenger.getName() + " | Route: " + routeName + " | Bus_booking_project.Bus No: " + busNo +
-                " | Date: " + travelDate + " | Interval: " + interval + " | Price: " + price + " AZN | Gender: " + passenger.getGender());
+    // Setters
+    public void setPassenger(Passenger passenger) {
+        this.passenger = passenger;
+    }
+
+    public void setBusNo(int busNo) {
+        this.busNo = busNo;
+    }
+
+    public void setTravelDate(Date travelDate) {
+        this.travelDate = travelDate;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public void setRouteName(String routeName) {
+        this.routeName = routeName;
+    }
+
+    public void setInterval(String interval) {
+        this.interval = interval;
+    }
+
+    @Override
+    public String toString() {
+        return "Booking{passenger=" + passenger.getName() +
+                ", busNo=" + busNo +
+                ", travelDate=" + travelDate +
+                ", price=" + price +
+                ", routeName='" + routeName + "'" +
+                ", interval='" + interval + "'}";
     }
 }

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.chart.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.AnalyticsDashboardController"
+            style="-fx-background-color: linear-gradient(to bottom, #0f172a, #1e293b);">
+
+    <!-- ÜST: Başlıq -->
+    <top>
+        <VBox spacing="20" style="-fx-background-color: rgba(255,255,255,0.05); -fx-padding: 25;">
+            <HBox alignment="CENTER" spacing="15">
+                <Label text="📊" style="-fx-font-size: 36px;"/>
+                <Label text="Analytics Dashboard"
+                       style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+            </HBox>
+
+            <!-- Əsas Statistika Kartları -->
+            <HBox spacing="20" alignment="CENTER">
+                <VBox alignment="CENTER" spacing="8"
+                      style="-fx-background-color: rgba(34,197,94,0.15); -fx-padding: 20; -fx-background-radius: 12; -fx-min-width: 180;">
+                    <Label text="💰 ÜMUMI GƏLİR" style="-fx-text-fill: #22C55E; -fx-font-size: 11px; -fx-font-weight: bold;"/>
+                    <Label fx:id="totalRevenueLabel" text="0.00 AZN"
+                           style="-fx-text-fill: white; -fx-font-size: 28px; -fx-font-weight: bold;"/>
+                </VBox>
+
+                <VBox alignment="CENTER" spacing="8"
+                      style="-fx-background-color: rgba(59,130,246,0.15); -fx-padding: 20; -fx-background-radius: 12; -fx-min-width: 180;">
+                    <Label text="🎫 REZERVASIYALAR" style="-fx-text-fill: #3B82F6; -fx-font-size: 11px; -fx-font-weight: bold;"/>
+                    <Label fx:id="totalBookingsLabel" text="0"
+                           style="-fx-text-fill: white; -fx-font-size: 28px; -fx-font-weight: bold;"/>
+                </VBox>
+
+                <VBox alignment="CENTER" spacing="8"
+                      style="-fx-background-color: rgba(168,85,247,0.15); -fx-padding: 20; -fx-background-radius: 12; -fx-min-width: 180;">
+                    <Label text="👥 İSTİFADƏÇİLƏR" style="-fx-text-fill: #A855F7; -fx-font-size: 11px; -fx-font-weight: bold;"/>
+                    <Label fx:id="totalUsersLabel" text="0"
+                           style="-fx-text-fill: white; -fx-font-size: 28px; -fx-font-weight: bold;"/>
+                </VBox>
+
+                <VBox alignment="CENTER" spacing="8"
+                      style="-fx-background-color: rgba(251,146,60,0.15); -fx-padding: 20; -fx-background-radius: 12; -fx-min-width: 180;">
+                    <Label text="⭐ ORTA REYTİNQ" style="-fx-text-fill: #FB923C; -fx-font-size: 11px; -fx-font-weight: bold;"/>
+                    <Label fx:id="avgRatingLabel" text="0.0 ⭐"
+                           style="-fx-text-fill: white; -fx-font-size: 28px; -fx-font-weight: bold;"/>
+                </VBox>
+            </HBox>
+        </VBox>
+    </top>
+
+    <!-- MƏRKƏZ: Qrafiklər və Cədvəllər -->
+    <center>
+        <VBox spacing="20" style="-fx-padding: 20;">
+            <!-- Qrafiklər Sətri -->
+            <HBox spacing="20" VBox.vgrow="ALWAYS">
+                <!-- Sol tərəf: Marşrut Statistikası -->
+                <VBox spacing="10" HBox.hgrow="ALWAYS"
+                      style="-fx-background-color: rgba(255,255,255,0.08); -fx-padding: 15; -fx-background-radius: 12;">
+                    <Label text="🚌 Top 5 Marşrut"
+                           style="-fx-text-fill: white; -fx-font-size: 18px; -fx-font-weight: bold;"/>
+                    <BarChart fx:id="routeChart" VBox.vgrow="ALWAYS"
+                              style="-fx-background-color: transparent;">
+                        <xAxis>
+                            <CategoryAxis side="BOTTOM" label="Marşrutlar"
+                                          style="-fx-tick-label-fill: white;"/>
+                        </xAxis>
+                        <yAxis>
+                            <NumberAxis side="LEFT" label="Rezervasiya Sayı"
+                                        style="-fx-tick-label-fill: white;"/>
+                        </yAxis>
+                    </BarChart>
+                </VBox>
+
+                <!-- Sağ tərəf: Gəlir Qrafiki -->
+                <VBox spacing="10" HBox.hgrow="ALWAYS"
+                      style="-fx-background-color: rgba(255,255,255,0.08); -fx-padding: 15; -fx-background-radius: 12;">
+                    <Label text="📈 Aylıq Gəlir Trendi"
+                           style="-fx-text-fill: white; -fx-font-size: 18px; -fx-font-weight: bold;"/>
+                    <LineChart fx:id="revenueChart" VBox.vgrow="ALWAYS"
+                               style="-fx-background-color: transparent;">
+                        <xAxis>
+                            <CategoryAxis side="BOTTOM" label="Ay"
+                                          style="-fx-tick-label-fill: white;"/>
+                        </xAxis>
+                        <yAxis>
+                            <NumberAxis side="LEFT" label="Gəlir (AZN)"
+                                        style="-fx-tick-label-fill: white;"/>
+                        </yAxis>
+                    </LineChart>
+                </VBox>
+            </HBox>
+
+            <!-- Alt Sətir: Cədvəllər -->
+            <HBox spacing="20" prefHeight="250">
+                <!-- Son Rezervasiyalar -->
+                <VBox spacing="10" HBox.hgrow="ALWAYS"
+                      style="-fx-background-color: rgba(255,255,255,0.08); -fx-padding: 15; -fx-background-radius: 12;">
+                    <Label text="🕒 Son Rezervasiyalar"
+                           style="-fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold;"/>
+                    <TableView fx:id="recentBookingsTable" VBox.vgrow="ALWAYS"
+                               style="-fx-background-color: transparent;">
+                        <columns>
+                            <TableColumn fx:id="bookingUserCol" text="Sərnişin" prefWidth="120"/>
+                            <TableColumn fx:id="bookingRouteCol" text="Marşrut" prefWidth="150"/>
+                            <TableColumn fx:id="bookingPriceCol" text="Qiymət" prefWidth="80"/>
+                        </columns>
+                    </TableView>
+                </VBox>
+
+                <!-- Top İstifadəçilər -->
+                <VBox spacing="10" HBox.hgrow="ALWAYS"
+                      style="-fx-background-color: rgba(255,255,255,0.08); -fx-padding: 15; -fx-background-radius: 12;">
+                    <Label text="🏆 Top İstifadəçilər"
+                           style="-fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold;"/>
+                    <TableView fx:id="topUsersTable" VBox.vgrow="ALWAYS"
+                               style="-fx-background-color: transparent;">
+                        <columns>
+                            <TableColumn fx:id="userNameCol" text="Ad" prefWidth="120"/>
+                            <TableColumn fx:id="userBookingsCol" text="Səfərlər" prefWidth="80"/>
+                            <TableColumn fx:id="userSpentCol" text="Xərc (AZN)" prefWidth="100"/>
+                        </columns>
+                    </TableView>
+                </VBox>
+            </HBox>
+        </VBox>
+    </center>
+
+    <!-- ALT: Düymələr -->
+    <bottom>
+        <HBox spacing="15" alignment="CENTER" style="-fx-background-color: rgba(255,255,255,0.05); -fx-padding: 20;">
+            <Button text="🔄 Yenilə" onAction="#handleRefresh"
+                    style="-fx-background-color: #22C55E; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 12 25; -fx-background-radius: 8;">
+                <font><Font name="System Bold" size="14"/></font>
+            </Button>
+
+            <Button text="📥 Export Excel" onAction="#handleExport"
+                    style="-fx-background-color: #3B82F6; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 12 25; -fx-background-radius: 8;">
+                <font><Font name="System Bold" size="14"/></font>
+            </Button>
+
+            <Button text="⬅ Geri" onAction="#handleBack"
+                    style="-fx-background-color: #EF4444; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 12 25; -fx-background-radius: 8;">
+                <font><Font name="System Bold" size="14"/></font>
+            </Button>
+        </HBox>
+    </bottom>
+
+</BorderPane>

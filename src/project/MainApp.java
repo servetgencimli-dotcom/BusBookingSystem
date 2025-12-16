@@ -13,12 +13,10 @@ public class MainApp extends Application {
     public void start(Stage stage) throws Exception {
         primaryStage = stage;
 
-        // Database initialization
         BusBookingSystem.seedRoutes();
         BusBookingSystem.users.addAll(UserDAO.loadAllUsers());
         BusBookingSystem.loadBookingsFromDB();
 
-        // Load initial scene
         loadScene("/fxml/MainLogin.fxml", "Avtobus Rezervasiya Sistemi");
         primaryStage.show();
     }

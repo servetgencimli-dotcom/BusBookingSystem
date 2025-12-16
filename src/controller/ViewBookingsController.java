@@ -55,7 +55,7 @@ public class ViewBookingsController implements Initializable {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
         for (Booking b : BusBookingSystem.bookingManager.bookings) {
-            if (showAllBookings || b.getPassenger().getUserFin().equals(currentUser.fin)) {
+            if (showAllBookings || b.getPassenger().getFin().equals(currentUser.fin)) {
                 data.add(new BookingData(
                         b.getPassenger().getName(),
                         b.getRouteName(),

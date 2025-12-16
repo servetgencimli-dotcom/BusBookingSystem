@@ -1,28 +1,51 @@
 package project;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CityCard {
-    List<String> cities;
+    public List<String> cities;
     public int monthsLeft;
 
-    public CityCard(List<String> cities, int months) {
-        this.cities = new ArrayList<>(cities);
-        this.monthsLeft = months;
+    public CityCard(List<String> cities, int monthsLeft) {
+        this.cities = cities;
+        this.monthsLeft = monthsLeft;
     }
 
-    public boolean isUsableFor(String city) {
-        if (cities.contains("GLOBAL")) return monthsLeft > 0;
-        for (String c : cities) if (c.equalsIgnoreCase(city)) return monthsLeft > 0;
+    public boolean isUsableFor(String cityName) {
+        if (monthsLeft <= 0) return false;
+
+        // GLOBAL kartı bütün şəhərlər üçün işləyir
+        if (cities.contains("GLOBAL")) return true;
+
+        // Konkret şəhər üçün yoxla
+        for (String city : cities) {
+            if (city.equalsIgnoreCase(cityName)) return true;
+        }
+
         return false;
     }
 
     public void useOneMonth() {
-        if (monthsLeft > 0) monthsLeft--;
+        if (monthsLeft > 0) {
+            monthsLeft--;
+            System.out.println("✅ City card used. Months left: " + monthsLeft);
+        }
     }
 
+    public List<String> getCities() {
+        return cities;
+    }
+
+    public int getMonthsLeft() {
+        return monthsLeft;
+    }
+
+    public void setMonthsLeft(int monthsLeft) {
+        this.monthsLeft = monthsLeft;
+    }
+
+    @Override
     public String toString() {
-        return "Cities=" + cities + ", monthsLeft=" + monthsLeft;
+        return "CityCard{cities=" + cities + ", monthsLeft=" + monthsLeft + "}";
     }
 }

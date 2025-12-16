@@ -24,4 +24,15 @@ public class User {
 
     public User(String admin, String gender, int age, String adminFin, String idSeries, String adminPass, String cardNumber, String cardExpiry) {
     }
+
+    // ✅ JavaFX TableView üçün GETTER metodları (MÜTLƏQ LAZIMDIR!)
+    public String getName() { return name; }
+    public String getGender() { return gender; }
+    public int getAge() { return age; }
+    public String getFin() { return fin; }
+    public String getIdSeries() { return idSeries; }
+    public boolean getIsAdmin() { return isAdmin; }
+    public String getCardNumber() { return cardNumber; }
+    public String getCardExpiry() { return cardExpiry; }
+    public String getCvc() { return cvc; }
 }

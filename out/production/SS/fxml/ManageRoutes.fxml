@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.shape.*?>
+
+<StackPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="controller.ManageRoutesController"
+           style="-fx-background-color: linear-gradient(to bottom right, #667eea, #764ba2);">
+
+    <!-- Ana Container -->
+    <BorderPane prefWidth="1000" prefHeight="700"
+                style="-fx-background-color: white;
+                       -fx-background-radius: 25;
+                       -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 40, 0, 0, 10);">
+        <StackPane.margin>
+            <Insets top="30" bottom="30" left="30" right="30"/>
+        </StackPane.margin>
+
+        <!-- Top Navigation Bar -->
+        <top>
+            <VBox>
+                <!-- Navigation -->
+                <HBox alignment="CENTER_LEFT" spacing="30"
+                      style="-fx-background-color: white;
+                             -fx-padding: 20 40;
+                             -fx-border-color: #e5e7eb;
+                             -fx-border-width: 0 0 1 0;">
+                    <HBox alignment="CENTER_LEFT" spacing="12" HBox.hgrow="ALWAYS">
+                        <StackPane style="-fx-background-color: linear-gradient(to right, #667eea, #764ba2);
+                                          -fx-background-radius: 12;
+                                          -fx-pref-width: 50;
+                                          -fx-pref-height: 50;">
+                            <Label text="🚌" style="-fx-font-size: 28; -fx-text-fill: white;"/>
+                        </StackPane>
+                        <VBox>
+                            <Label text="Transport Admin"
+                                   style="-fx-font-size: 20;
+                                          -fx-font-weight: bold;
+                                          -fx-text-fill: #1f2937;"/>
+                            <Label text="Nəqliyyat İdarəetmə Sistemi"
+                                   style="-fx-font-size: 12;
+                                          -fx-text-fill: #6b7280;"/>
+                        </VBox>
+                    </HBox>
+
+                    <HBox alignment="CENTER_RIGHT" spacing="15">
+                        <Button text="Dashboard"
+                                style="-fx-background-color: transparent;
+                                       -fx-text-fill: #6b7280;
+                                       -fx-font-size: 14;
+                                       -fx-cursor: hand;
+                                       -fx-padding: 8 16;"/>
+                        <Button text="Marşrutlar"
+                                style="-fx-background-color: #ede9fe;
+                                       -fx-text-fill: #7c3aed;
+                                       -fx-font-size: 14;
+                                       -fx-font-weight: bold;
+                                       -fx-background-radius: 8;
+                                       -fx-cursor: hand;
+                                       -fx-padding: 8 16;"/>
+                        <Button text="Parametrlər"
+                                style="-fx-background-color: transparent;
+                                       -fx-text-fill: #6b7280;
+                                       -fx-font-size: 14;
+                                       -fx-cursor: hand;
+                                       -fx-padding: 8 16;"/>
+                        <StackPane style="-fx-background-color: #f3f4f6;
+                                          -fx-background-radius: 50;
+                                          -fx-pref-width: 40;
+                                          -fx-pref-height: 40;
+                                          -fx-cursor: hand;">
+                            <Label text="👤" style="-fx-font-size: 18;"/>
+                        </StackPane>
+                    </HBox>
+                </HBox>
+
+                <!-- Page Header -->
+                <VBox style="-fx-background-color: linear-gradient(to right, #f9fafb, #f3f4f6);
+                             -fx-padding: 40 40 30 40;">
+                    <HBox alignment="CENTER_LEFT" spacing="15">
+                        <StackPane style="-fx-background-color: linear-gradient(135deg, #667eea, #764ba2);
+                                          -fx-background-radius: 15;
+                                          -fx-pref-width: 70;
+                                          -fx-pref-height: 70;
+                                          -fx-effect: dropshadow(gaussian, rgba(102,126,234,0.4), 15, 0, 0, 5);">
+                            <Label text="🚌" style="-fx-font-size: 36;"/>
+                        </StackPane>
+                        <VBox spacing="5">
+                            <Label text="Marşrutların İdarə Edilməsi"
+                                   style="-fx-font-size: 32;
+                                          -fx-font-weight: bold;
+                                          -fx-text-fill: #111827;"/>
+                            <Label text="Yeni marşrutlar əlavə edin, mövcud marşrutları redaktə edin və ya silin"
+                                   style="-fx-font-size: 15;
+                                          -fx-text-fill: #6b7280;"/>
+                        </VBox>
+                    </HBox>
+                </VBox>
+            </VBox>
+        </top>
+
+        <!-- Main Content -->
+        <center>
+            <HBox spacing="30" alignment="CENTER" style="-fx-padding: 40;">
+
+                <!-- Sidebar Info Card -->
+                <VBox spacing="20" prefWidth="320"
+                      style="-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #667eea, #764ba2);
+                             -fx-background-radius: 20;
+                             -fx-padding: 30;
+                             -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 20, 0, 0, 5);">
+                    <VBox spacing="15">
+                        <Label text="📊 Statistika"
+                               style="-fx-font-size: 20;
+                                      -fx-font-weight: bold;
+                                      -fx-text-fill: white;"/>
+                        <VBox spacing="12">
+                            <HBox alignment="CENTER_LEFT" spacing="12"
+                                  style="-fx-background-color: rgba(255,255,255,0.2);
+                                         -fx-background-radius: 12;
+                                         -fx-padding: 15;">
+                                <Label text="🌍" style="-fx-font-size: 24;"/>
+                                <VBox>
+                                    <Label text="Global Marşrutlar"
+                                           style="-fx-text-fill: rgba(255,255,255,0.9);
+                                                  -fx-font-size: 13;"/>
+                                    <Label text="24 Aktiv"
+                                           style="-fx-text-fill: white;
+                                                  -fx-font-size: 20;
+                                                  -fx-font-weight: bold;"/>
+                                </VBox>
+                            </HBox>
+
+                            <HBox alignment="CENTER_LEFT" spacing="12"
+                                  style="-fx-background-color: rgba(255,255,255,0.2);
+                                         -fx-background-radius: 12;
+                                         -fx-padding: 15;">
+                                <Label text="🏠" style="-fx-font-size: 24;"/>
+                                <VBox>
+                                    <Label text="Domestic Marşrutlar"
+                                           style="-fx-text-fill: rgba(255,255,255,0.9);
+                                                  -fx-font-size: 13;"/>
+                                    <Label text="156 Aktiv"
+                                           style="-fx-text-fill: white;
+                                                  -fx-font-size: 20;
+                                                  -fx-font-weight: bold;"/>
+                                </VBox>
+                            </HBox>
+
+                            <HBox alignment="CENTER_LEFT" spacing="12"
+                                  style="-fx-background-color: rgba(255,255,255,0.2);
+                                         -fx-background-radius: 12;
+                                         -fx-padding: 15;">
+                                <Label text="🏠" style="-fx-font-size: 24;"/>
+                                <VBox>
+                                    <Label text="Domestic Marşrutlar"
+                                           style="-fx-text-fill: rgba(255,255,255,0.9);
+                                                  -fx-font-size: 13;"/>
+                                    <Label text="156 Aktiv"
+                                           style="-fx-text-fill: white;
+                                                  -fx-font-size: 20;
+                                                  -fx-font-weight: bold;"/>
+                                </VBox>
+                            </HBox>
+
+                            <HBox alignment="CENTER_LEFT" spacing="12"
+                                  style="-fx-background-color: rgba(255,255,255,0.2);
+                                         -fx-background-radius: 12;
+                                         -fx-padding: 15;">
+                                <Label text="🏙" style="-fx-font-size: 24;"/>
+                                <VBox>
+                                    <Label text="City Marşrutlar"
+                                           style="-fx-text-fill: rgba(255,255,255,0.9);
+                                                  -fx-font-size: 13;"/>
+                                    <Label text="89 Aktiv"
+                                           style="-fx-text-fill: white;
+                                                  -fx-font-size: 20;
+                                                  -fx-font-weight: bold;"/>
+                                </VBox>
+                            </HBox>
+                        </VBox>
+                    </VBox>
+                    <Separator style="-fx-background-color: rgba(255,255,255,0.3);"/>
+
+                    <VBox spacing="10">
+                        <Label text="⚠ Xəbərdarlıq"
+                               style="-fx-font-size: 16;
+                                      -fx-font-weight: bold;
+                                      -fx-text-fill: #fef3c7;"/>
+                        <Label text="Bu əməliyyatlar yalnız Admin statusu ilə mümkündür. Bütün dəyişikliklər dərhal tətbiq olunacaq."
+                               style="-fx-text-fill: rgba(255,255,255,0.9);
+                                      -fx-font-size: 13;
+                                      -fx-wrap-text: true;"/>
+                    </VBox>
+                </VBox>
+
+                <!-- Main Form Card -->
+                <VBox spacing="25" prefWidth="500"
+                      style="-fx-background-color: white;
+                             -fx-background-radius: 20;
+                             -fx-padding: 40;
+                             -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 25, 0, 0, 5);">
+
+                    <VBox spacing="8">
+                        <Label text="Marşrut Parametrləri"
+                               style="-fx-font-size: 24;
+                                      -fx-font-weight: bold;
+                                      -fx-text-fill: #111827;"/>
+                        <Label text="Əməliyyat üçün marşrut növünü seçin"
+                               style="-fx-font-size: 14;
+                                      -fx-text-fill: #6b7280;"/>
+                    </VBox>
+                    <Separator style="-fx-background-color: #e5e7eb;"/>
+
+                    <!-- ComboBox Section -->
+                    <VBox spacing="12">
+                        <HBox alignment="CENTER_LEFT" spacing="8">
+                            <Label text="📍" style="-fx-font-size: 18;"/>
+                            <Label text="Marşrut Növü Seçin"
+                                   style="-fx-font-size: 15;
+                                          -fx-font-weight: 600;
+                                          -fx-text-fill: #374151;"/>
+                        </HBox>
+                        <ComboBox fx:id="routeTypeCombo"
+                                  prefWidth="420"
+                                  prefHeight="50"
+                                  promptText="Növü seçin..."
+                                  style="-fx-background-color: #f9fafb;
+                                         -fx-border-color: #d1d5db;
+                                         -fx-border-width: 2;
+                                         -fx-border-radius: 12;
+                                         -fx-background-radius: 12;
+                                         -fx-font-size: 15;
+                                         -fx-padding: 12 16;">
+                            <cursor><Cursor fx:constant="HAND"/></cursor>
+                        </ComboBox>
+                    </VBox>
+
+                    <Separator style="-fx-background-color: #e5e7eb;"/>
+
+                    <!-- Action Buttons -->
+                    <VBox spacing="15">
+                        <Label text="Əməliyyatlar"
+                               style="-fx-font-size: 15;
+                                      -fx-font-weight: 600;
+                                      -fx-text-fill: #374151;"/>
+
+                        <Button fx:id="addRouteBtn"
+                                text="➕  Yeni Marşrut Əlavə Et"
+                                prefWidth="420"
+                                prefHeight="55"
+                                onAction="#handleAddRoute"
+                                style="-fx-background-color: linear-gradient(to right, #10b981, #059669);
+                                       -fx-text-fill: white;
+                                       -fx-font-size: 16;
+                                       -fx-font-weight: bold;
+                                       -fx-background-radius: 12;
+                                       -fx-cursor: hand;
+                                       -fx-effect: dropshadow(gaussian, rgba(16,185,129,0.3), 12, 0, 0, 4);">
+                            <cursor><Cursor fx:constant="HAND"/></cursor>
+                        </Button>
+
+                        <Button fx:id="removeRouteBtn"
+                                text="🗑  Marşrutu Sil"
+                                prefWidth="420"
+                                prefHeight="55"
+                                onAction="#handleRemoveRoute"
+                                style="-fx-background-color: linear-gradient(to right, #ef4444, #dc2626);
+                                       -fx-text-fill: white;
+                                       -fx-font-size: 16;
+                                       -fx-font-weight: bold;
+                                       -fx-background-radius: 12;
+                                       -fx-cursor: hand;
+-fx-effect: dropshadow(gaussian, rgba(239,68,68,0.3), 12, 0, 0, 4);">
+                            <cursor><Cursor fx:constant="HAND"/></cursor>
+                        </Button>
+
+                        <Button fx:id="renameRouteBtn"
+                                text="✏  Marşrutun Adını Dəyiş"
+                                prefWidth="420"
+                                prefHeight="55"
+                                onAction="#handleRenameRoute"
+                                style="-fx-background-color: linear-gradient(to right, #3b82f6, #2563eb);
+                                       -fx-text-fill: white;
+                                       -fx-font-size: 16;
+                                       -fx-font-weight: bold;
+                                       -fx-background-radius: 12;
+                                       -fx-cursor: hand;
+                                       -fx-effect: dropshadow(gaussian, rgba(59,130,246,0.3), 12, 0, 0, 4);">
+                            <cursor><Cursor fx:constant="HAND"/></cursor>
+                        </Button>
+
+                        <Button fx:id="changeIntervalsBtn"
+                                text="⏱  Vaxt Aralıqlarını Dəyiş"
+                                prefWidth="420"
+                                prefHeight="55"
+                                onAction="#handleChangeIntervals"
+                                style="-fx-background-color: linear-gradient(to right, #f59e0b, #d97706);
+                                       -fx-text-fill: white;
+                                       -fx-font-size: 16;
+                                       -fx-font-weight: bold;
+                                       -fx-background-radius: 12;
+-fx-cursor: hand;
+                                       -fx-effect: dropshadow(gaussian, rgba(245,158,11,0.3), 12, 0, 0, 4);">
+                            <cursor><Cursor fx:constant="HAND"/></cursor>
+                        </Button>
+                    </VBox>
+
+                    <Separator style="-fx-background-color: #e5e7eb;"/>
+
+                    <Button fx:id="backBtn"
+                            text="←  Geri (Admin Panel)"
+                            prefWidth="420"
+                            prefHeight="50"
+                            onAction="#handleBack"
+                            style="-fx-background-color: #f3f4f6;
+                                   -fx-text-fill: #4b5563;
+                                   -fx-font-size: 15;
+                                   -fx-font-weight: 600;
+                                   -fx-background-radius: 12;
+                                   -fx-border-color: #e5e7eb;
+                                   -fx-border-width: 2;
+                                   -fx-border-radius: 12;
+                                   -fx-cursor: hand;">
+                        <cursor><Cursor fx:constant="HAND"/></cursor>
+                    </Button>
+                </VBox>
+            </HBox>
+        </center>
+
+        <!-- Footer -->
+        <bottom>
+            <HBox alignment="CENTER" spacing="20"
+                  style="-fx-background-color: #f9fafb;
+                         -fx-padding: 20;
+                         -fx-border-color: #e5e7eb;
+                         -fx-border-width: 1 0 0 0;">
+                <Label text="© 2024 Transport Admin System"
+                       style="-fx-text-fill: #9ca3af;
+                              -fx-font-size: 13;"/>
+                <Label text="•" style="-fx-text-fill: #d1d5db;"/>
+                <Label text="Version 2.0"
+                       style="-fx-text-fill: #9ca3af;
+                              -fx-font-size: 13;"/>
+                <Label text="•" style="-fx-text-fill: #d1d5db;"/>
+                <Label text="Admin Panel"
+                       style="-fx-text-fill: #9ca3af;
+                              -fx-font-size: 13;"/>
+            </HBox>
+        </bottom>
+    </BorderPane>
+</StackPane>

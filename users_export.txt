@@ -1,0 +1,8 @@
+=== İSTİFADƏÇİ HESABATI ===
+
+Ümumi istifadəçi sayı: 2
+Admin sayı: 1
+
+--------------------------------------------------------
+Ad: ss | FIN: AA123EE | Yaş: 19 | Cins: K | Admin: Xeyr
+Ad: SARVAT | FIN: WW123EE | Yaş: 20 | Cins: K | Admin: Bəli

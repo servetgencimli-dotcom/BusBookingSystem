@@ -14,7 +14,7 @@ public class BusBookingSystem {
     static Scanner sc = new Scanner(System.in);
     public static ArrayList<User> users = new ArrayList<>();
     static final String ADMIN_FIN = "XXXXXXX";
-    public static final String ADMIN_PASS = "ADMINADMIN";
+    public static final String ADMIN_PASS = "2025Admin2025";
     public static Map<String, Integer> globalRoutes = new LinkedHashMap<>();
     public static Map<String, Integer> domesticRoutes = new LinkedHashMap<>();
     public static String[] cityIntervals = {"06:00-07:00", "10:00-11:00", "14:00-15:00", "18:00-19:00", "22:00-23:00"};
@@ -23,12 +23,19 @@ public class BusBookingSystem {
     public static BookingManager bookingManager = new BookingManager();
     public static Payment payment = new Payment();
 
+    // 🆕 YENİ SİSTEMLƏR
+    public static DiscountManager discountManager = new DiscountManager();
+    public static LoyaltyProgram loyaltyProgram = new LoyaltyProgram();
+    public static NotificationSystem notificationSystem = new NotificationSystem();
+    public static RatingSystem ratingSystem = new RatingSystem();
+
     public static void main(String[] args) {
-        // users = new ArrayList<>(Bus_booking_project.UserDAO.loadAllUsers());
+        // Verilənlər bazasını initialize et
+        DB.initializeDatabase();
+
         seedRoutes();
         users = new ArrayList<>(UserDAO.loadAllUsers());
         loadBookingsFromDB();
-
 
         while (true) {
             System.out.println("\n===== MAIN MENU =====");
@@ -63,10 +70,9 @@ public class BusBookingSystem {
         }
     }
 
-
     static void seedRoutes() {
         try (Connection conn = DB.connect()) {
-            conn.setAutoCommit(false); // transaction başlat
+            conn.setAutoCommit(false);
 
             String[] countries = {"Turkey", "Germany", "France", "Italy", "Spain"};
             for (String country : countries) {
@@ -98,45 +104,16 @@ public class BusBookingSystem {
                     ps.executeUpdate();
                 }
             }
+            conn.commit();
         } catch (SQLException e) {
             System.out.println("Error seeding routes: " + e.getMessage());
         }
     }
 
-
-    public void mainMenu() {
-        Scanner sc = new Scanner(System.in);
-
-        while (true) {
-            System.out.println("\n===== MAIN MENU =====");
-            System.out.println("1. Login");
-            System.out.println("2. Register");
-            System.out.println("3. Exit");
-            System.out.print("Select: ");
-
-            String op = sc.nextLine();
-
-            switch (op) {
-                case "1":
-                    loginMenu();
-                    break;
-                case "2":
-                    registerUser();
-                    break;
-                case "3":
-                    return;
-                default:
-                    System.out.println("Invalid option!");
-            }
-        }
-    }
-
     public static User loginMenu() {
-        Scanner sc = new Scanner(System.in);
-
         while (true) {
             System.out.println("\n===== LOGIN MENU =====");
-            System.out.println("1. Bus_booking_project.User Login");
+            System.out.println("1. User Login");
             System.out.println("2. Admin Login");
             System.out.println("3. Back");
             System.out.print("Select option: ");
@@ -157,64 +134,43 @@ public class BusBookingSystem {
     }
 
     public static User userLogin() {
-        Scanner sc = new Scanner(System.in);
-
         System.out.print("FIN: ");
         String fin = sc.nextLine();
-
         System.out.print("Password: ");
         String password = sc.nextLine();
 
         User u = UserDAO.loadUser(fin, password);
 
-        if (u != null) {
-            if (u.isAdmin) {
-                System.out.println("Incorrect FIN or password!");
-                return null;
-            } else {
-                System.out.println("Login successful!");
-                return u;
-
-            }
-
+        if (u != null && !u.isAdmin) {
+            System.out.println("✅ Login successful! Welcome " + u.name + "!");
+            notificationSystem.sendWelcomeNotification(u);
+            return u;
         } else {
-            System.out.println("Incorrect FIN or password!");
+            System.out.println("❌ Incorrect FIN or password!");
             return null;
         }
     }
 
     public static User adminLogin() {
-        Scanner sc = new Scanner(System.in);
-
         System.out.print("Admin FIN: ");
         String fin = sc.nextLine();
-
         System.out.print("Admin Password: ");
         String password = sc.nextLine();
 
         User d = UserDAO.loadUser(fin, password);
 
-
-        if (d != null) {
-            System.out.println("Admin logged in!");
-            User admin = new User(
-                    "Admin", "N/A", 0,
-                    ADMIN_FIN, "N/A",
-                    ADMIN_PASS, "N/A", "N/A", "N/A", true
-            );
-            admin.isAdmin = true;
-            return admin;
+        if (d != null && d.isAdmin) {
+            System.out.println("✅ Admin logged in!");
+            return d;
         } else {
-            System.out.println("Wrong admin credentials!");
+            System.out.println("❌ Wrong admin credentials!");
             return null;
         }
-
     }
 
     public static User registerUser() {
         System.out.print("Adınız: ");
         String name = sc.nextLine().trim();
-
 
         int age;
         System.out.print("Yaş: ");
@@ -227,7 +183,6 @@ public class BusBookingSystem {
 
         String gender = "";
         if (age < 18) {
-
             gender = "U";
             System.out.println("🔔 18 yaşdan kiçik olduğunuz üçün kateqoriya 'U' (Uşaq) olaraq təyin edildi.");
         } else {
@@ -240,7 +195,7 @@ public class BusBookingSystem {
         }
 
         System.out.println("Register as:");
-        System.out.println("1. Bus_booking_project.User");
+        System.out.println("1. User");
         System.out.println("2. Admin");
         System.out.print("Choice: ");
         int rtype;
@@ -253,7 +208,6 @@ public class BusBookingSystem {
 
         boolean isAdmin = false;
         if (rtype == 2) {
-
             if (age < 18) {
                 System.out.println("❌ Admin qeydiyyatı yalnız 18 yaşdan yuxarı şəxslər üçün mümkündür.");
                 return null;
@@ -304,38 +258,12 @@ public class BusBookingSystem {
         User u = new User(name, gender, age, fin, series, password, card, exp, cvc, isAdmin);
         UserDAO.saveUser(u);
         users.add(u);
+
+        // 🆕 Loyalty proqramına əlavə et
+        loyaltyProgram.registerUser(String.valueOf(u));
+
         System.out.println("✅ Registered successfully!");
         return u;
-    }
-
-
-    public static User login() {
-        System.out.print("Enter FIN: ");
-        String fin = sc.nextLine();
-
-        System.out.print("Enter password: ");
-        String pass = sc.nextLine();
-
-        if (fin.equals(ADMIN_FIN) && pass.equals(ADMIN_PASS)) {
-            User admin = new User(
-                    "Admin", "N/A", 0,
-                    ADMIN_FIN, "N/A",
-                    ADMIN_PASS, "N/A", "N/A"
-            );
-            admin.isAdmin = true;
-            System.out.println("Welcome, Admin!");
-            return admin;
-        }
-
-        for (User u : users) {
-            if (u.fin.equals(fin) && u.password.equals(pass)) {
-                System.out.println("Welcome " + u.name + "!");
-                return u;
-            }
-        }
-
-        System.out.println("FIN or password incorrect.");
-        return null;
     }
 
     public static void loadBookingsFromDB() {
@@ -378,7 +306,6 @@ public class BusBookingSystem {
         return null;
     }
 
-
     public static void userMenu(User user) {
         while (true) {
             System.out.println("\n=== USER MENU ===");
@@ -387,9 +314,16 @@ public class BusBookingSystem {
             System.out.println("3. City Travel");
             System.out.println("4. Buy City Card");
             System.out.println("5. Update Profile");
-            System.out.println("6. Logout");
+            System.out.println("6. 🆕 View My Bookings");
+            System.out.println("7. 🆕 Loyalty Points & Rewards");
+            System.out.println("8. 🆕 Active Discounts");
+            System.out.println("9. 🆕 Apply Promo Code");
+            System.out.println("10. 🆕 Rate Your Trip");
+            System.out.println("11. 🆕 Notifications");
+            System.out.println("12. Logout");
             System.out.print("Choose option: ");
             String opt = sc.nextLine().trim();
+
             switch (opt) {
                 case "1":
                     handleBooking("global", user);
@@ -407,6 +341,24 @@ public class BusBookingSystem {
                     updateProfile(user);
                     break;
                 case "6":
+                    viewMyBookings(user);
+                    break;
+                case "7":
+                    viewLoyaltyPoints(user);
+                    break;
+                case "8":
+                    viewActiveDiscounts(user);
+                    break;
+                case "9":
+                    applyPromoCode(user);
+                    break;
+                case "10":
+                    rateTrip(user);
+                    break;
+                case "11":
+                    viewNotifications(user);
+                    break;
+                case "12":
                     System.out.println("Logged out.");
                     return;
                 default:
@@ -423,7 +375,11 @@ public class BusBookingSystem {
             System.out.println("3. Manage City Routes");
             System.out.println("4. View All Bookings");
             System.out.println("5. View Users");
-            System.out.println("6. Logout");
+            System.out.println("6. 🆕 Discount Management");
+            System.out.println("7. 🆕 Analytics Dashboard");
+            System.out.println("8. 🆕 View Ratings & Reviews");
+            System.out.println("9. 🆕 Send Notifications");
+            System.out.println("10. Logout");
             System.out.print("Choose option: ");
             String opt = sc.nextLine().trim();
 
@@ -444,6 +400,18 @@ public class BusBookingSystem {
                     viewUsers();
                     break;
                 case "6":
+                    manageDiscounts();
+                    break;
+                case "7":
+                    showAnalytics();
+                    break;
+                case "8":
+                    viewRatings();
+                    break;
+                case "9":
+                    sendBulkNotifications();
+                    break;
+                case "10":
                     System.out.println("Admin logged out.");
                     return;
                 default:
@@ -451,6 +419,183 @@ public class BusBookingSystem {
             }
         }
     }
+
+    // 🆕 YENİ FUNKSIYALAR
+
+    public static void viewMyBookings(User user) {
+        System.out.println("\n=== MY BOOKINGS ===");
+        List<Booking> myBookings = bookingManager.getBookingsByUser(user.fin);
+        if (myBookings.isEmpty()) {
+            System.out.println("No bookings found.");
+            return;
+        }
+        for (int i = 0; i < myBookings.size(); i++) {
+            Booking b = myBookings.get(i);
+            System.out.println((i + 1) + ". " + b.getRouteName() + " | " +
+                    new SimpleDateFormat("dd.MM.yyyy").format(b.getTravelDate()) +
+                    " | " + b.getPrice() + " AZN");
+        }
+    }
+
+    public static void viewLoyaltyPoints(User user) {
+        System.out.println("\n=== LOYALTY PROGRAM ===");
+        int points = loyaltyProgram.getPoints(user.fin);
+        System.out.println("💎 Your Points: " + points);
+        System.out.println("\n🎁 Available Rewards:");
+        System.out.println("1. 10% Discount (100 points)");
+        System.out.println("2. Free City Card (200 points)");
+        System.out.println("3. Upgrade to VIP (500 points)");
+
+        System.out.print("\nRedeem reward? (1-3 or 0 to skip): ");
+        try {
+            int choice = Integer.parseInt(sc.nextLine().trim());
+            if (choice == 1 && points >= 100) {
+                loyaltyProgram.redeemPoints(user.fin, 100);
+                discountManager.addDiscount(user.fin, 10, "Loyalty Reward");
+                System.out.println("✅ 10% discount activated!");
+            } else if (choice == 2 && points >= 200) {
+                loyaltyProgram.redeemPoints(user.fin, 200);
+                CityCard cc = new CityCard(Arrays.asList("GLOBAL"), 1);
+                user.cityCards.add(cc);
+                System.out.println("✅ Free city card added!");
+            } else if (choice == 3 && points >= 500) {
+                loyaltyProgram.redeemPoints(user.fin, 500);
+                System.out.println("✅ VIP status activated!");
+            } else if (choice != 0) {
+                System.out.println("❌ Insufficient points or invalid choice!");
+            }
+        } catch (Exception e) {
+            System.out.println("Invalid input.");
+        }
+    }
+
+    public static void viewActiveDiscounts(User user) {
+        System.out.println("\n=== ACTIVE DISCOUNTS ===");
+        List<Discount> discounts = discountManager.getActiveDiscounts(user.fin);
+        if (discounts.isEmpty()) {
+            System.out.println("No active discounts.");
+        } else {
+            for (Discount d : discounts) {
+                System.out.println("🎟️ " + d.percentage + "% OFF - " + d.reason);
+            }
+        }
+    }
+
+    public static void applyPromoCode(User user) {
+        System.out.println("\n=== APPLY PROMO CODE ===");
+        System.out.print("Enter promo code: ");
+        String code = sc.nextLine().trim();
+
+        boolean success = discountManager.applyPromoCode(code, user.fin);
+
+        if (success) {
+            System.out.println("✅ Promo code activated successfully!");
+            System.out.println("Your discount will be applied to your next booking.");
+        } else {
+            System.out.println("❌ Invalid or expired promo code.");
+        }
+    }
+
+    public static void rateTrip(User user) {
+        System.out.println("\n=== RATE YOUR TRIP ===");
+        List<Booking> myBookings = bookingManager.getBookingsByUser(user.fin);
+        if (myBookings.isEmpty()) {
+            System.out.println("No trips to rate.");
+            return;
+        }
+
+        for (int i = 0; i < myBookings.size(); i++) {
+            System.out.println((i + 1) + ". " + myBookings.get(i).getRouteName());
+        }
+
+        System.out.print("Select trip to rate: ");
+        try {
+            int choice = Integer.parseInt(sc.nextLine().trim()) - 1;
+            if (choice >= 0 && choice < myBookings.size()) {
+                System.out.print("Rating (1-5): ");
+                int rating = Integer.parseInt(sc.nextLine().trim());
+                System.out.print("Comment (optional): ");
+                String comment = sc.nextLine().trim();
+
+                ratingSystem.addRating(myBookings.get(choice).getRouteName(), user.fin, rating, comment);
+                System.out.println("✅ Thank you for your feedback!");
+            }
+        } catch (Exception e) {
+            System.out.println("Invalid input.");
+        }
+    }
+
+    public static void viewNotifications(User user) {
+        System.out.println("\n=== NOTIFICATIONS ===");
+        List<String> notifications = notificationSystem.getNotifications(user.fin);
+        if (notifications.isEmpty()) {
+            System.out.println("No new notifications.");
+        } else {
+            for (String notif : notifications) {
+                System.out.println("🔔 " + notif);
+            }
+        }
+    }
+
+    public static void manageDiscounts() {
+        System.out.println("\n=== DISCOUNT MANAGEMENT ===");
+        System.out.println("1. Create Promo Code");
+        System.out.println("2. View All Discounts");
+        System.out.println("3. Back");
+        System.out.print("Choose: ");
+
+        String opt = sc.nextLine().trim();
+        if (opt.equals("1")) {
+            System.out.print("Promo Code: ");
+            String code = sc.nextLine().trim();
+            System.out.print("Discount %: ");
+            int percent = Integer.parseInt(sc.nextLine().trim());
+            discountManager.createPromoCode(code, percent);
+            System.out.println("✅ Promo code created!");
+        } else if (opt.equals("2")) {
+            discountManager.showAllPromoCodes();
+        }
+    }
+
+    public static void showAnalytics() {
+        System.out.println("\n=== ANALYTICS DASHBOARD ===");
+        System.out.println("📊 Total Bookings: " + bookingManager.bookings.size());
+        System.out.println("👥 Total Users: " + users.size());
+
+        double revenue = bookingManager.bookings.stream()
+                .mapToDouble(Booking::getPrice).sum();
+        System.out.println("💰 Total Revenue: " + String.format("%.2f", revenue) + " AZN");
+
+        Map<String, Long> routeStats = new HashMap<>();
+        for (Booking b : bookingManager.bookings) {
+            routeStats.put(b.getRouteName(),
+                    routeStats.getOrDefault(b.getRouteName(), 0L) + 1);
+        }
+
+        System.out.println("\n🔥 Top Routes:");
+        routeStats.entrySet().stream()
+                .sorted((a, b) -> b.getValue().compareTo(a.getValue()))
+                .limit(5)
+                .forEach(e -> System.out.println("  - " + e.getKey() + ": " + e.getValue() + " bookings"));
+    }
+
+    public static void viewRatings() {
+        System.out.println("\n=== RATINGS & REVIEWS ===");
+        ratingSystem.displayAllRatings();
+    }
+
+    public static void sendBulkNotifications() {
+        System.out.print("Enter notification message: ");
+        String message = sc.nextLine().trim();
+        for (User u : users) {
+            if (!u.isAdmin) {
+                notificationSystem.sendNotification(u.fin, message);
+            }
+        }
+        System.out.println("✅ Notification sent to all users!");
+    }
+
+    // KÖHNƏ FUNKSIYALAR (saxlanılıb)
 
     public static void manageRoutes(String type) {
         Map<String, Integer> map;
@@ -510,14 +655,13 @@ public class BusBookingSystem {
                 ps.executeUpdate();
             }
 
-            busManager.addBus(route, new Bus(route)); // Əgər busManager Bus_booking_project.DB istifadə edirsə, bunu eyni conn daxilinə inteqrasiya et
-
+            busManager.addBus(route, new Bus(route));
             map.put(route, dist);
 
             conn.commit();
             System.out.println("✅ Route added to " + type.toUpperCase());
         } catch (SQLException e) {
-            System.out.println("Bus_booking_project.DB error: " + e.getMessage());
+            System.out.println("DB error: " + e.getMessage());
         }
     }
 
@@ -555,13 +699,13 @@ public class BusBookingSystem {
                 ps.executeUpdate();
             }
 
-            busManager.removeBus(route); // Əgər Bus_booking_project.DB istifadə edirsə eyni conn daxilində et
+            busManager.removeBus(route);
             map.remove(route);
 
             conn.commit();
             System.out.println("❌ Route removed: " + route);
         } catch (SQLException e) {
-            System.out.println("Bus_booking_project.DB error: " + e.getMessage());
+            System.out.println("DB error: " + e.getMessage());
         }
     }
 
@@ -611,7 +755,7 @@ public class BusBookingSystem {
                 ps.executeUpdate();
             }
 
-            busManager.removeBus(oldName); // Eyni conn daxilində safe edilsə daha yaxşıdır
+            busManager.removeBus(oldName);
             busManager.addBus(newName, new Bus(newName));
 
             map.remove(oldName);
@@ -620,7 +764,7 @@ public class BusBookingSystem {
             conn.commit();
             System.out.println("✏️ Renamed: " + oldName + " → " + newName);
         } catch (SQLException e) {
-            System.out.println("Bus_booking_project.DB error: " + e.getMessage());
+            System.out.println("DB error: " + e.getMessage());
         }
     }
 
@@ -645,7 +789,6 @@ public class BusBookingSystem {
         System.out.print("Enter new interval (HH:MM-HH:MM): ");
         String newInterval = sc.nextLine().trim();
 
-        // sadə regex yoxlaması
         if (!newInterval.matches("^\\d{2}:\\d{2}-\\d{2}:\\d{2}$")) {
             System.out.println("❌ Wrong format! Use HH:MM-HH:MM");
             return;
@@ -654,30 +797,20 @@ public class BusBookingSystem {
         cityIntervals[ch] = newInterval;
         System.out.println("⏱️ Interval updated!");
 
-        // Əgər Bus_booking_project.DB-yə də yazmaq lazımdırsa
-
         try (Connection conn = DB.connect();
              PreparedStatement ps = conn.prepareStatement(
                      "UPDATE cityIntervals SET intervalTime=? WHERE id=?")) {
             ps.setString(1, newInterval);
-            ps.setInt(2, ch + 1); // id varsa 1-dən başlayır
+            ps.setInt(2, ch + 1);
             ps.executeUpdate();
         } catch (Exception e) {
-            System.out.println("Bus_booking_project.DB error: " + e.getMessage());
+            System.out.println("DB error: " + e.getMessage());
         }
-
     }
-
 
     public static void viewUsers() {
         System.out.println("\n--- Registered Users ---");
         for (User u : users) {
-            System.out.println("Name: " + u.name + " | FIN: " + u.fin + " | Admin: " + u.isAdmin + " | CityCards: " + u.cityCards.size());
-        }
-        // also list Bus_booking_project.DB users
-        List<User> dbUsers = UserDAO.loadAllUsers();
-        System.out.println("\n--- Bus_booking_project.DB Users ---");
-        for (User u : dbUsers) {
             System.out.println("Name: " + u.name + " | FIN: " + u.fin + " | Admin: " + u.isAdmin + " | CityCards: " + u.cityCards.size());
         }
     }
@@ -747,7 +880,7 @@ public class BusBookingSystem {
                 ps.setString(7, u.fin);
                 ps.executeUpdate();
             } catch (Exception e) {
-                System.out.println("updateProfile Bus_booking_project.DB error: " + e.getMessage());
+                System.out.println("updateProfile DB error: " + e.getMessage());
             }
             System.out.println("✅ Profile updated.");
         } else {
@@ -843,9 +976,8 @@ public class BusBookingSystem {
             int seatChoice;
 
             while (true) {
-                System.out.print("Bus_booking_project.Passenger name: ");
+                System.out.print("Passenger name: ");
                 pname = sc.nextLine().trim();
-
 
                 User matched = findUserByName(pname);
                 boolean autoAssignedChild = false;
@@ -896,7 +1028,19 @@ public class BusBookingSystem {
                     SeatDAO.saveSeat(routeName, new SimpleDateFormat("yyyy-MM-dd").format(travelDate), selectedInterval, seatChoice, pgender);
 
                     double price = payment.calculatePayment(routeMap.get(routeName), true, luggage);
+
+                    // 🆕 Endirim tətbiq et
+                    double discount = discountManager.applyBestDiscount(user.fin, price);
+                    price -= discount;
+                    if (discount > 0) {
+                        System.out.println("💰 Discount applied: -" + discount + " AZN");
+                    }
+
                     payment.processPayment(sc, price, user);
+
+                    // 🆕 Loyalty xal əlavə et
+                    loyaltyProgram.addPoints(user.fin, (int)(price / 10));
+
                     Passenger p = new Passenger(pname, page, pgender, luggage, pfin);
                     Booking b = new Booking(p, 0, travelDate, price, routeName, selectedInterval);
                     bookingManager.addBooking(b);
@@ -948,9 +1092,8 @@ public class BusBookingSystem {
             printReceipt(b);
             return;
         } else {
-            System.out.print("Bus_booking_project.Passenger name: ");
+            System.out.print("Passenger name: ");
             String pname = sc.nextLine().trim();
-
 
             User matched = findUserByName(pname);
             boolean autoAssignedChild = false;
@@ -1058,17 +1201,16 @@ public class BusBookingSystem {
 
     public static void printReceipt(Booking b) {
         System.out.println("\n--- RECEIPT ---");
-        System.out.println("Bus_booking_project.Passenger: " + b.getPassenger().getName());
+        System.out.println("Passenger: " + b.getPassenger().getName());
         System.out.println("Route: " + b.getRouteName());
         System.out.println("Interval: " + b.getInterval());
         System.out.println("Price: " + b.getPrice() + " AZN");
         System.out.println("-----------------\n");
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("receipt.txt", true))) {
-            writer.write("Bus_booking_project.Passenger: " + b.getPassenger().getName() + " | Route: " + b.getRouteName() + " | Interval: " + b.getInterval() + " | Price: " + b.getPrice() + " AZN\n");
+            writer.write("Passenger: " + b.getPassenger().getName() + " | Route: " + b.getRouteName() + " | Interval: " + b.getInterval() + " | Price: " + b.getPrice() + " AZN\n");
         } catch (Exception e) {
             System.out.println("Error writing receipt: " + e.getMessage());
         }
     }
-
 }

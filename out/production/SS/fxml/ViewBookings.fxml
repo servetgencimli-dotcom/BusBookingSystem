@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="controller.ViewBookingsController"
+      spacing="20" styleClass="root">
+    <padding><Insets top="30" right="30" bottom="30" left="30"/></padding>
+    <Label fx:id="titleLabel" text="BOOKINGS" styleClass="title">
+        <font><Font name="System Bold" size="24"/></font>
+    </Label>
+    <TableView fx:id="bookingsTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="passengerCol" text="Passenger" prefWidth="150"/>
+            <TableColumn fx:id="routeCol" text="Route" prefWidth="200"/>
+            <TableColumn fx:id="dateCol" text="Date" prefWidth="120"/>
+            <TableColumn fx:id="intervalCol" text="Interval" prefWidth="120"/>
+            <TableColumn fx:id="priceCol" text="Price (AZN)" prefWidth="100"/>
+        </columns>
+    </TableView>
+    <Button fx:id="backBtn" text="Back" onAction="#handleBack"
+            prefWidth="120" prefHeight="40" styleClass="back-button"/>
+</VBox>
+

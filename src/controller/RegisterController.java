@@ -11,7 +11,7 @@ import project.UserDAO;
 import project.MainApp;
 
 /**
- * Register.fxml üçün Controller
+ * Register.fxml üçün Controller - YENİLƏNMİŞ VERSİYA
  */
 public class RegisterController {
 
@@ -38,8 +38,16 @@ public class RegisterController {
 
     @FXML
     private ToggleGroup genderGroup;
+
     @FXML
     private ToggleGroup userTypeGroup;
+
+    // Navigation düymələri
+    @FXML
+    private Button homeNavButton;
+
+    @FXML
+    private Button loginNavButton;
 
     @FXML
     public void initialize() {
@@ -52,11 +60,13 @@ public class RegisterController {
         userTypeRadio.setToggleGroup(userTypeGroup);
         adminTypeRadio.setToggleGroup(userTypeGroup);
 
+        // Admin seçildikdə admin kod sahəsini göstər
         adminTypeRadio.selectedProperty().addListener((obs, oldVal, newVal) -> {
             adminCodeBox.setVisible(newVal);
             adminCodeBox.setManaged(newVal);
         });
 
+        // Yaş 18-dən kiçik olarsa avtomatik "U" (Uşaq) seç
         ageField.textProperty().addListener((obs, oldVal, newVal) -> {
             try {
                 int age = Integer.parseInt(newVal);
@@ -65,10 +75,14 @@ public class RegisterController {
                     genderGroup.selectToggle(childRadio);
                 }
             } catch (Exception e) {
+                // Invalid age, ignore
             }
         });
     }
 
+    /**
+     * Qeydiyyat əməliyyatı
+     */
     @FXML
     private void handleRegister(ActionEvent event) {
         String name = nameField.getText().trim();
@@ -81,7 +95,7 @@ public class RegisterController {
         String cvc = cvcField.getText().trim();
 
         if (name.isEmpty()) {
-            messageLabel.setText("❌ Ad daxil edilməlidir!");
+            showMessage("❌ Ad daxil edilməlidir!", false);
             return;
         }
 
@@ -89,7 +103,7 @@ public class RegisterController {
         try {
             age = Integer.parseInt(ageStr);
         } catch (Exception e) {
-            messageLabel.setText("❌ Düzgün yaş daxil edin!");
+            showMessage("❌ Düzgün yaş daxil edin!", false);
             return;
         }
 
@@ -98,7 +112,7 @@ public class RegisterController {
         else if (femaleRadio.isSelected()) gender = "Q";
         else if (childRadio.isSelected()) gender = "U";
         else {
-            messageLabel.setText("❌ Cins seçilməlidir!");
+            showMessage("❌ Cins seçilməlidir!", false);
             return;
         }
 
@@ -110,36 +124,36 @@ public class RegisterController {
 
         if (isAdmin) {
             if (age < 18) {
-                messageLabel.setText("❌ Admin qeydiyyatı yalnız 18 yaşdan yuxarı şəxslər üçün mümkündür!");
+                showMessage("❌ Admin qeydiyyatı yalnız 18 yaşdan yuxarı şəxslər üçün mümkündür!", false);
                 return;
             }
 
             String adminCode = adminCodeField.getText().trim();
             if (!adminCode.equals(BusBookingSystem.ADMIN_PASS)) {
-                messageLabel.setText("❌ Yanlış Admin kodu!");
+                showMessage("❌ Yanlış Admin kodu!", false);
                 return;
             }
         }
 
         if (!fin.matches("^[A-Z0-9]{7}$")) {
-            messageLabel.setText("❌ FIN kod 7 simvol olmalıdır (böyük hərf və rəqəm)!");
+            showMessage("❌ FIN kod 7 simvol olmalıdır (böyük hərf və rəqəm)!", false);
             return;
         }
 
         if (!series.matches("AA\\d{7}")) {
-            messageLabel.setText("❌ Seriya nömrəsi AA1234567 formatında olmalıdır!");
+            showMessage("❌ Seriya nömrəsi AA1234567 formatında olmalıdır!", false);
             return;
         }
 
         if (password.isEmpty()) {
-            messageLabel.setText("❌ Şifrə daxil edilməlidir!");
+            showMessage("❌ Şifrə daxil edilməlidir!", false);
             return;
         }
 
         if (!isAdmin) {
             Payment payment = new Payment();
             if (!payment.validateCardInfo(card, expiry, cvc)) {
-                messageLabel.setText("❌ Kart məlumatları səhvdir!");
+                showMessage("❌ Kart məlumatları səhvdir!", false);
                 return;
             }
         } else {
@@ -152,8 +166,7 @@ public class RegisterController {
         UserDAO.saveUser(user);
         BusBookingSystem.users.add(user);
 
-        messageLabel.setTextFill(javafx.scene.paint.Color.GREEN);
-        messageLabel.setText("✅ Qeydiyyat uğurlu oldu!");
+        showMessage("✅ Qeydiyyat uğurlu oldu!", true);
 
         new Thread(() -> {
             try {
@@ -167,8 +180,56 @@ public class RegisterController {
         }).start();
     }
 
+    /**
+     * Geri düyməsi
+     */
     @FXML
     private void handleBack(ActionEvent event) {
         MainApp.loadScene("/fxml/MainLogin.fxml", "Avtobus Rezervasiya Sistemi");
+    }
+
+    /**
+     * Ana səhifəyə keçid (Navigation)
+     */
+    @FXML
+    private void goToHome(ActionEvent event) {
+        MainApp.loadScene("/fxml/MainLogin.fxml", "Avtobus Rezervasiya Sistemi");
+    }
+
+    /**
+     * Login səhifəsinə keçid (Navigation)
+     */
+    @FXML
+    private void goToLogin(ActionEvent event) {
+        MainApp.loadScene("/fxml/UserLogin.fxml", "İstifadəçi Girişi");
+    }
+
+    /**
+     * Mesaj göstər
+     */
+    private void showMessage(String message, boolean isSuccess) {
+        messageLabel.setText(message);
+        messageLabel.setVisible(true);
+        messageLabel.setManaged(true);
+
+        if (isSuccess) {
+            messageLabel.setStyle(
+                    "-fx-text-fill: #059669;" +
+                            "-fx-font-size: 13;" +
+                            "-fx-font-weight: 600;" +
+                            "-fx-padding: 10;" +
+                            "-fx-background-color: #d1fae5;" +
+                            "-fx-background-radius: 8;"
+            );
+        } else {
+            messageLabel.setStyle(
+                    "-fx-text-fill: #dc2626;" +
+                            "-fx-font-size: 13;" +
+                            "-fx-font-weight: 600;" +
+                            "-fx-padding: 10;" +
+                            "-fx-background-color: #fee2e2;" +
+                            "-fx-background-radius: 8;"
+            );
+        }
     }
 }
